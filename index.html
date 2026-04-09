@@ -131,21 +131,23 @@
         }
 
         function exibirPonto(local) {
-            if (marcadorAtual) map.removeLayer(marcadorAtual);
-            map.flyTo([local.lat, local.lng], 18);
-            marcadorAtual = L.marker([local.lat, local.lng]).addTo(map)
-                .bindPopup(`
-                    <div class="popup-card">
-                        <strong>${local.bairro}</strong><br>
-                        Quadra: ${local.quadra}<br>
-                        <small>${local.obs || ''}</small>
-                        <button class="btn-gps" onclick="window.open('http://googleusercontent.com/maps.google.com/8{local.lat},${local.lng}')">COMO CHEGAR</button>
-                    </div>
-                `).openPopup();
-            document.getElementById('selBairro').value = local.bairro;
-            atualizarListaQuadras();
-            document.getElementById('selQuadra').value = local.quadra;
-        }
+    if (marcadorAtual) map.removeLayer(marcadorAtual);
+    map.flyTo([local.lat, local.lng], 18);
+
+    marcadorAtual = L.marker([local.lat, local.lng]).addTo(map)
+        .bindPopup(`
+            <div class="popup-card">
+                <strong>${local.bairro}</strong><br>
+                Quadra: ${local.quadra}<br>
+                <small>${local.obs || ''}</small>
+                <button class="btn-gps" onclick="window.open('https://www.google.com/maps/search/?api=1&query=${local.lat},${local.lng}')">COMO CHEGAR</button>
+            </div>
+        `).openPopup();
+
+    document.getElementById('selBairro').value = local.bairro;
+    atualizarListaQuadras();
+    document.getElementById('selQuadra').value = local.quadra;
+}
 
         function localizarNoMapa() {
             const b = document.getElementById('selBairro').value;
