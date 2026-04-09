@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Localizador de Quadras</title>
+    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         * { box-sizing: border-box; }
@@ -16,6 +17,14 @@
         button { background: #27ae60; color: white; font-weight: bold; cursor: pointer; margin-top: 5px; }
         button:disabled { background: #7f8c8d; }
         #map { flex-grow: 1; width: 100%; }
+        
+        /* Botão de Localização Flutuante */
+        .btn-geo { 
+            position: absolute; bottom: 20px; right: 20px; z-index: 1000;
+            background: white; width: 50px; height: 50px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3); border: none; cursor: pointer;
+        }
         .popup-card { text-align: center; min-width: 150px; }
         .btn-gps { background: #3498db; color: white; border: none; padding: 10px; border-radius: 5px; width: 100%; cursor: pointer; font-weight: bold; margin-top: 10px; }
     </style>
@@ -41,6 +50,10 @@
     </div>
 
     <div id="map"></div>
+    
+    <button class="btn-geo" onclick="minhaLocalizacao()" title="Onde eu estou?">
+        📍
+    </button>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="dados.js"></script>
@@ -49,12 +62,11 @@
         const map = L.map('map').setView([-15.95, -48.28], 14);
         
         L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-            maxZoom: 20,
-            subdomains:['mt0','mt1','mt2','mt3'],
-            attribution: '© Google Maps'
+            maxZoom: 20, subdomains:['mt0','mt1','mt2','mt3'], attribution: '© Google Maps'
         }).addTo(map);
 
         let marcadorAtual = null;
+        let marcadorVoce = null;
 
         function inicializarApp() {
             const selectBairro = document.getElementById('selBairro');
@@ -62,8 +74,7 @@
             const bairrosUnicos = [...new Set(baseDeDados.map(item => item.bairro))].sort();
             bairrosUnicos.forEach(bairro => {
                 let opt = document.createElement('option');
-                opt.value = bairro;
-                opt.innerHTML = bairro;
+                opt.value = bairro; opt.innerHTML = bairro;
                 selectBairro.appendChild(opt);
             });
         }
@@ -79,35 +90,27 @@
                     .sort((a, b) => a.quadra.localeCompare(b.quadra, undefined, {numeric: true}));
                 quadrasFiltradas.forEach(item => {
                     let opt = document.createElement('option');
-                    opt.value = item.quadra;
-                    opt.innerHTML = "Quadra " + item.quadra;
+                    opt.value = item.quadra; opt.innerHTML = "Quadra " + item.quadra;
                     selectQuadra.appendChild(opt);
                 });
-                selectQuadra.disabled = false;
-                btn.disabled = false;
+                selectQuadra.disabled = false; btn.disabled = false;
             } else {
-                selectQuadra.disabled = true;
-                btn.disabled = true;
+                selectQuadra.disabled = true; btn.disabled = true;
             }
         }
 
-        // Função para mostrar o popup (reutilizável pelo clique e pela busca)
         function exibirPonto(local) {
             if (marcadorAtual) map.removeLayer(marcadorAtual);
-            
             map.flyTo([local.lat, local.lng], 18);
-            
             marcadorAtual = L.marker([local.lat, local.lng]).addTo(map)
                 .bindPopup(`
                     <div class="popup-card">
                         <strong>${local.bairro}</strong><br>
                         Quadra: ${local.quadra}<br>
                         <small>${local.obs || ''}</small>
-                        <button class="btn-gps" onclick="window.open('http://maps.google.com/maps?daddr=${local.lat},${local.lng}')">COMO CHEGAR</button>
+                        <button class="btn-gps" onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=${local.lat},${local.lng}')">COMO CHEGAR</button>
                     </div>
                 `).openPopup();
-            
-            // Atualiza os seletores para o local clicado
             document.getElementById('selBairro').value = local.bairro;
             atualizarListaQuadras();
             document.getElementById('selQuadra').value = local.quadra;
@@ -120,25 +123,33 @@
             if (local) exibirPonto(local);
         }
 
-        // NOVIDADE: Detectar clique no mapa
+        // FUNÇÃO DE GEOLOCALIZAÇÃO
+        function minhaLocalizacao() {
+            map.locate({setView: true, maxZoom: 16});
+        }
+
+        map.on('locationfound', function(e) {
+            if (marcadorVoce) map.removeLayer(marcadorVoce);
+            marcadorVoce = L.circle(e.latlng, {radius: 10, color: '#3498db', fillOpacity: 0.8}).addTo(map)
+                .bindPopup("Você está aqui!").openPopup();
+        });
+
+        map.on('locationerror', function() {
+            alert("Não foi possível encontrar sua localização. Verifique o GPS.");
+        });
+
         map.on('click', function(e) {
             const cliqueLat = e.latlng.lat;
             const cliqueLng = e.latlng.lng;
-            
             let pontoMaisProximo = null;
-            let menorDistancia = 0.0005; // Raio aproximado de 50 metros
-
+            let menorDistancia = 0.0005; 
             baseDeDados.forEach(ponto => {
                 const dist = Math.sqrt(Math.pow(ponto.lat - cliqueLat, 2) + Math.pow(ponto.lng - cliqueLng, 2));
                 if (dist < menorDistancia) {
-                    menorDistancia = dist;
-                    pontoMaisProximo = ponto;
+                    menorDistancia = dist; pontoMaisProximo = ponto;
                 }
             });
-
-            if (pontoMaisProximo) {
-                exibirPonto(pontoMaisProximo);
-            }
+            if (pontoMaisProximo) exibirPonto(pontoMaisProximo);
         });
 
         window.onload = inicializarApp;
