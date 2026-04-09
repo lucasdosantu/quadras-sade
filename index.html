@@ -58,10 +58,10 @@
 
     <div id="map">
         <div class="controls-right">
-            <button class="btn-float btn-sat" onclick="toggleSatelite()" title="Visão Satélite">🛰️</button>
-            <button class="btn-float btn-suggest" id="btnSuggest" onclick="toggleSuggestMode()" title="Sugerir Ponto">➕</button>
-            <button class="btn-float" onclick="minhaLocalizacao()" title="Minha Localização">📍</button>
-        </div>
+    <button class="btn-float btn-sat" onclick="event.stopPropagation(); toggleSatelite()" title="Visão Satélite">🛰️</button>
+    <button class="btn-float btn-suggest" id="btnSuggest" onclick="event.stopPropagation(); toggleSuggestMode()" title="Sugerir Ponto">➕</button>
+    <button class="btn-float" onclick="event.stopPropagation(); minhaLocalizacao()" title="Minha Localização">📍</button>
+</div>
     </div>
 
     <div id="footer">
@@ -189,10 +189,15 @@
         });
 
         function toggleSuggestMode() {
-            modoSugestao = !modoSugestao;
-            document.getElementById('btnSuggest').classList.toggle('active-mode', modoSugestao);
-            if(modoSugestao) alert("Modo Sugestão Ativo: Toque no mapa para enviar um novo ponto.");
-        }
+    modoSugestao = !modoSugestao;
+    const btn = document.getElementById('btnSuggest');
+    
+    if (modoSugestao) {
+        btn.classList.add('active-mode');
+    } else {
+        btn.classList.remove('active-mode');
+    }
+}
 
         map.on('click', function(e) {
             if (modoSugestao) {
