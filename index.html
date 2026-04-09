@@ -6,6 +6,7 @@
     <title>SAD - Localizador Pro</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="css/estilo-mapa.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
     <div id="header">
@@ -39,5 +40,12 @@
             minhaLocalizacao();
         };
     </script>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+      .then(() => console.log("Service Worker registrado com sucesso!"))
+      .catch(err => console.log("Erro ao registrar Service Worker:", err));
+  }
+</script>
 </body>
 </html>
