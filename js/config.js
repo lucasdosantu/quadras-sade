@@ -12,10 +12,13 @@ const layerSatelite = L.tileLayer('https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&
 
 const map = L.map('map', { 
     layers: [layerRua],
-    zoomControl: true
+    zoomControl: false
 }).setView([-15.943, -48.265], 13);
 
-let marcadorAtual, marcadorVoce, modoSugestao = false, coordsUsuario = null;
+var marcadorAtual = null;
+var marcadorVoce = null;
+var modoSugestao = false;
+var coordsUsuario = null;
 
 function toggleSatelite() {
     if (map.hasLayer(layerRua)) { 
