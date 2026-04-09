@@ -1,28 +1,25 @@
-let marcadorAtual = null;
-
 function exibirPonto(local) {
+    if (!map) return;
     if (marcadorAtual) map.removeLayer(marcadorAtual);
 
     map.flyTo([local.lat, local.lng], 18);
 
-    const dist = (typeof calcularDistancia === 'function') ? calcularDistancia(local.lat, local.lng) : null;
-    const labelDistancia = dist ? `<span class="distancia-label">📍 A ${dist} de você</span>` : '';
-    
+    let labelDistancia = '';
+    try {
+        const dist = calcularDistancia(local.lat, local.lng);
+        if (dist) labelDistancia = `<span class="distancia-label">📍 A ${dist} de você</span>`;
+    } catch (e) { console.log("GPS ainda não obteve posição"); }
+
     const urlGps = `https://www.google.com/maps/dir/?api=1&destination=${local.lat},${local.lng}`;
 
     marcadorAtual = L.marker([local.lat, local.lng]).addTo(map).bindPopup(`
         <div class="popup-card">
-            <div style="margin-bottom:8px">
-                <strong style="font-size:1.1em">${local.bairro}</strong><br>
-                <span>Quadra: ${local.quadra}</span><br>
-                <small>CEP: ${local.cep || '---'}</small>
-            </div>
+            <strong>${local.bairro}</strong><br>
+            Quadra: ${local.quadra}<br>
+            CEP: ${local.cep || '---'}<br>
             ${labelDistancia}
-            <small style="display:block;margin:5px 0;color:#7f8c8d;font-style:italic">${local.obs || ''}</small>
-            <button class="btn-gps" onclick="window.open('${urlGps}', '_blank')" 
-                    style="width:100%; padding:10px; background:#27ae60; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold; margin-top:5px">
-                IR PARA O LOCAL
-            </button>
+            <small style="display:block;margin-top:5px;color:#7f8c8d">${local.obs || ''}</small>
+            <button class="btn-gps" onclick="window.open('${urlGps}', '_blank')">IR PARA O LOCAL</button>
         </div>
     `).openPopup();
 }
