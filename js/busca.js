@@ -13,9 +13,11 @@ function processarBusca() {
     );
 
     if (encontrado) {
-        exibirPonto(encontrado);
-        mainSearch.blur();
-        listaSugestoes.innerHTML = "";
+        if (typeof exibirPonto === 'function') {
+            exibirPonto(encontrado);
+            mainSearch.blur();
+            listaSugestoes.innerHTML = "";
+        }
     } else {
         atualizarSugestoes(termo);
     }
@@ -23,7 +25,6 @@ function processarBusca() {
 
 function atualizarSugestoes(termo) {
     listaSugestoes.innerHTML = "";
-    
     if (termo.length < 1) return;
 
     const filtrados = baseDeDados.filter(item => 
@@ -33,9 +34,7 @@ function atualizarSugestoes(termo) {
     );
 
     filtrados.sort((a, b) => {
-        if (a.bairro !== b.bairro) {
-            return a.bairro.localeCompare(b.bairro);
-        }
+        if (a.bairro !== b.bairro) return a.bairro.localeCompare(b.bairro);
         const numA = parseInt(a.quadra.replace(/\D/g, '')) || 0;
         const numB = parseInt(b.quadra.replace(/\D/g, '')) || 0;
         return numA - numB;
