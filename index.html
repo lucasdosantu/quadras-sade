@@ -37,9 +37,11 @@
 
     <script>
         window.onload = () => {
-            document.getElementById('totalQuadras').innerText = baseDeDados.length;
-            minhaLocalizacao();
-        };
+    document.getElementById('totalQuadras').innerText = baseDeDados.length;
+    document.getElementById('anoAtual').innerText = new Date().getFullYear(); // Define o ano automaticamente
+    minhaLocalizacao();
+};
+
     </script>
 <script>
   if ('serviceWorker' in navigator) {
