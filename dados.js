@@ -27,8 +27,8 @@ const baseDeDados = [
         "bairro": "Centro",
         "quadra": "47",
         "cep": "72900364",
-        "lat": -15.943725,
-        "lng": -48.264858,
+        "lat": -15.943539,
+        "lng": -48.263035,
         "obs": "Quadra em frente a Lua & Sol"
     },
     {
