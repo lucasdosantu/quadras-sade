@@ -10,9 +10,10 @@ O aplicativo se destina a moradores, motoristas e entregadores da cidade que bus
 
 [Preview do App](img/preview.png)
 
+[https://lucasdosantu.github.io/quadras-sade/](https://lucasdosantu.github.io/quadras-sade/)
+
 - **Busca Inteligente:** Auto-complete para localização imediata de pontos cadastrados.
-- **Modo Offline (PWA):** Graças ao Service Worker, o mapa e os dados podem ser acessados mesmo em áreas com sinal de internet instável.
-- **Cálculo de Distância:** Exibe em tempo real a distância entre a sua posição GPS e o ponto selecionado.
+- **Modo Offline (PWA):** Graças ao Service Worker, o mapa e os dados podem ser acessados mesmo em áreas com sinal de internet insDistância**Cálculo de Distância:** Exibe em tempo real a distância entre a sua posição GPS e o ponto selecionado.
 - **Modo Sugestão:** Clique no mapa para capturar coordenadas e sugerir novos pontos via formulário integrado.
 - **Visualização Dupla:** Alternância rápida entre visão de Rua e Satélite (Google Maps Tiles).
 
