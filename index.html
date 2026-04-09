@@ -22,15 +22,12 @@
             position: absolute; bottom: 80px; right: 20px; z-index: 1000; 
             display: flex; flex-direction: column; gap: 10px; align-items: flex-end;
         }
-        
-        /* Caixa de Instrução Flutuante */
+
         #hintBox {
             background: #e74c3c; color: white; padding: 10px 15px; border-radius: 8px;
             font-size: 13px; font-weight: bold; margin-bottom: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            display: none; /* Escondido por padrão */
-            max-width: 200px; text-align: center; position: relative;
+            display: none; max-width: 200px; text-align: center; position: relative;
         }
-        /* Pequena seta na caixa */
         #hintBox::after {
             content: ""; position: absolute; top: 100%; right: 15px;
             border-width: 8px; border-style: solid; border-color: #e74c3c transparent transparent transparent;
@@ -41,7 +38,7 @@
             display: flex; align-items: center; justify-content: center;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3); border: none; cursor: pointer; font-size: 20px;
         }
-        
+
         .btn-suggest { background: #f39c12; color: white; }
         .active-mode { background: #e74c3c !important; animation: pulse 1s infinite; border: 2px solid white; }
 
@@ -131,23 +128,24 @@
         }
 
         function exibirPonto(local) {
-    if (marcadorAtual) map.removeLayer(marcadorAtual);
-    map.flyTo([local.lat, local.lng], 18);
+            if (marcadorAtual) map.removeLayer(marcadorAtual);
+            map.flyTo([local.lat, local.lng], 18);
 
-    marcadorAtual = L.marker([local.lat, local.lng]).addTo(map)
-        .bindPopup(`
-            <div class="popup-card">
-                <strong>${local.bairro}</strong><br>
-                Quadra: ${local.quadra}<br>
-                <small>${local.obs || ''}</small>
-                <button class="btn-gps" onclick="window.open('https://www.google.com/maps/search/?api=1&query=${local.lat},${local.lng}')">COMO CHEGAR</button>
-            </div>
-        `).openPopup();
+            // CORREÇÃO DA URL DO GPS AQUI:
+            marcadorAtual = L.marker([local.lat, local.lng]).addTo(map)
+                .bindPopup(`
+                    <div class="popup-card">
+                        <strong>${local.bairro}</strong><br>
+                        Quadra: ${local.quadra}<br>
+                        <small>${local.obs || ''}</small>
+                        <button class="btn-gps" onclick="window.open('https://www.google.com/maps/search/?api=1&query=${local.lat},${local.lng}', '_blank')">COMO CHEGAR</button>
+                    </div>
+                `).openPopup();
 
-    document.getElementById('selBairro').value = local.bairro;
-    atualizarListaQuadras();
-    document.getElementById('selQuadra').value = local.quadra;
-}
+            document.getElementById('selBairro').value = local.bairro;
+            atualizarListaQuadras();
+            document.getElementById('selQuadra').value = local.quadra;
+        }
 
         function localizarNoMapa() {
             const b = document.getElementById('selBairro').value;
@@ -172,10 +170,10 @@
             const hint = document.getElementById('hintBox');
             if (modoSugestao) {
                 btn.classList.add('active-mode');
-                hint.style.display = 'block'; // Mostra o texto
+                hint.style.display = 'block';
             } else {
                 btn.classList.remove('active-mode');
-                hint.style.display = 'none'; // Esconde o texto
+                hint.style.display = 'none';
             }
         }
 
@@ -185,7 +183,7 @@
                 const lng = e.latlng.lng.toFixed(6);
                 const idCampoForm = "entry.1414645035";
                 const urlBase = "https://docs.google.com/forms/d/e/1FAIpQLSc5BV7pRFTZzJW-XfCjkWTLYu16VFZ47qolVYP7eWW4RbxzAg/viewform";
-                
+
                 window.open(`${urlBase}?${idCampoForm}=${lat},${lng}`, '_blank');
                 toggleSuggestMode();
                 return;
