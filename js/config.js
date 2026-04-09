@@ -13,7 +13,7 @@ const layerSatelite = L.tileLayer('https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&
 const map = L.map('map', { 
     layers: [layerRua],
     zoomControl: true
-}).setView([-15.943, -48.265], 20);
+}).setView([-15.943, -48.265], 13);
 
 let marcadorAtual, marcadorVoce, modoSugestao = false, coordsUsuario = null;
 
