@@ -8,37 +8,17 @@
     <style>
         * { box-sizing: border-box; }
         body { margin: 0; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; height: 100vh; background: #ecf0f1; }
-        
         #header { padding: 15px; background: #2c3e50; color: white; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
         .search-container { max-width: 600px; margin: 0 auto; position: relative; }
-        
-        /* Input de Busca Inteligente */
-        .search-box {
-            width: 100%; padding: 15px; border-radius: 30px; border: none;
-            font-size: 16px; outline: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
+        .search-box { width: 100%; padding: 15px; border-radius: 30px; border: none; font-size: 16px; outline: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         #map { flex-grow: 1; width: 100%; position: relative; }
-
-        /* Controles Flutuantes */
-        .controls-right { 
-            position: absolute; bottom: 30px; right: 20px; z-index: 1000; 
-            display: flex; flex-direction: column; gap: 12px;
-        }
-
-        .btn-float { 
-            background: white; width: 55px; height: 55px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: none; cursor: pointer; font-size: 22px;
-            transition: 0.3s;
-        }
+        .controls-right { position: absolute; bottom: 30px; right: 20px; z-index: 1000; display: flex; flex-direction: column; gap: 12px; }
+        .btn-float { background: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: none; cursor: pointer; font-size: 22px; transition: 0.3s; }
         .btn-float:active { transform: scale(0.9); }
         .btn-sat { background: #3498db; color: white; }
         .btn-suggest { background: #f39c12; color: white; }
         .active-mode { background: #e74c3c !important; animation: pulse 1s infinite; border: 2px solid white; }
-
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
-
         #footer { background: #2c3e50; color: #bdc3c7; font-size: 11px; text-align: center; padding: 8px; }
         .popup-card { text-align: center; min-width: 180px; padding: 5px; }
         .btn-gps { background: #27ae60; color: white; border: none; padding: 12px; border-radius: 8px; width: 100%; cursor: pointer; font-weight: bold; margin-top: 10px; font-size: 14px; }
@@ -46,67 +26,40 @@
     </style>
 </head>
 <body>
-
     <div id="header">
         <div class="search-container">
-            <input type="text" id="mainSearch" class="search-box" 
-                   placeholder="Digite Quadra, CEP ou Bairro..." 
-                   list="listaSugestoes" oninput="processarBusca()">
+            <input type="text" id="mainSearch" class="search-box" placeholder="Digite Quadra, CEP ou Bairro..." list="listaSugestoes" oninput="processarBusca()">
             <datalist id="listaSugestoes"></datalist>
         </div>
     </div>
-
     <div id="map">
         <div class="controls-right">
-    <button class="btn-float btn-sat" onclick="event.stopPropagation(); toggleSatelite()" title="Visão Satélite">🛰️</button>
-    <button class="btn-float btn-suggest" id="btnSuggest" onclick="event.stopPropagation(); toggleSuggestMode()" title="Sugerir Ponto">➕</button>
-    <button class="btn-float" onclick="event.stopPropagation(); minhaLocalizacao()" title="Minha Localização">📍</button>
-</div>
+            <button class="btn-float btn-sat" onclick="event.stopPropagation(); toggleSatelite()">🛰️</button>
+            <button class="btn-float btn-suggest" id="btnSuggest" onclick="event.stopPropagation(); toggleSuggestMode()">➕</button>
+            <button class="btn-float" onclick="event.stopPropagation(); minhaLocalizacao()">📍</button>
+        </div>
     </div>
-
-    <div id="footer">
-        SAD - Localizador de Quadras | <span id="totalQuadras">0</span> mapeadas
-    </div>
-
+    <div id="footer">SAD - Localizador de Quadras | <span id="totalQuadras">0</span> mapeadas</div>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="dados.js"></script>
-
     <script>
-        // Configuração de Camadas
-        const layerRua = L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-            maxZoom: 20, subdomains:['mt0','mt1','mt2','mt3'], attribution: '© Google Maps'
-        });
-
-        const layerSatelite = L.tileLayer('https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
-            maxZoom: 20, subdomains:['mt0','mt1','mt2','mt3'], attribution: '© Google Maps'
-        });
-
+        const layerRua = L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', { maxZoom: 20, subdomains:['mt0','mt1','mt2','mt3'] });
+        const layerSatelite = L.tileLayer('https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { maxZoom: 20, subdomains:['mt0','mt1','mt2','mt3'] });
         const map = L.map('map', { layers: [layerRua] }).setView([-15.943, -48.265], 15);
+        let marcadorAtual, marcadorVoce, modoSugestao = false, coordsUsuario = null;
 
-        let marcadorAtual = null;
-        let marcadorVoce = null;
-        let modoSugestao = false;
-        let coordsUsuario = null;
-
-        // --- INICIALIZAÇÃO ---
         function inicializarApp() {
             document.getElementById('totalQuadras').innerText = baseDeDados.length;
             atualizarSugestoes("");
-            minhaLocalizacao(); // Tenta pegar a posição ao abrir
+            minhaLocalizacao();
         }
 
-        // --- PESQUISA INTELIGENTE (HÍBRIDA) ---
         function processarBusca() {
             const termo = document.getElementById('mainSearch').value.toLowerCase();
-            
-            // Verifica se o que foi digitado corresponde exatamente a uma opção da lista
-            const encontrado = baseDeDados.find(item => 
-                `${item.quadra} - ${item.bairro} (${item.cep || 'Sem CEP'})`.toLowerCase() === termo
-            );
-
+            const encontrado = baseDeDados.find(item => `${item.quadra} - ${item.bairro} (${item.cep || 'Sem CEP'})`.toLowerCase() === termo);
             if (encontrado) {
                 exibirPonto(encontrado);
-                document.getElementById('mainSearch').blur(); // Fecha o teclado no celular
+                document.getElementById('mainSearch').blur();
             } else {
                 atualizarSugestoes(termo);
             }
@@ -115,98 +68,71 @@
         function atualizarSugestoes(termo) {
             const datalist = document.getElementById('listaSugestoes');
             datalist.innerHTML = "";
-            
             if (termo.length < 1) return;
-
-            const filtrados = baseDeDados.filter(item => 
-                item.quadra.toLowerCase().includes(termo) || 
-                (item.cep && item.cep.includes(termo)) ||
-                item.bairro.toLowerCase().includes(termo)
-            ).slice(0, 8); // Limita a 8 sugestões para ficar limpo
-
-            filtrados.forEach(item => {
-                const opt = document.createElement('option');
-                opt.value = `${item.quadra} - ${item.bairro} (${item.cep || 'Sem CEP'})`;
-                datalist.appendChild(opt);
-            });
+            baseDeDados.filter(item => item.quadra.toLowerCase().includes(termo) || (item.cep && item.cep.includes(termo)) || item.bairro.toLowerCase().includes(termo))
+                .slice(0, 8).forEach(item => {
+                    const opt = document.createElement('option');
+                    opt.value = `${item.quadra} - ${item.bairro} (${item.cep || 'Sem CEP'})`;
+                    datalist.appendChild(opt);
+                });
         }
 
-        // --- CÁLCULO DE DISTÂNCIA (HAVERSINE) ---
         function calcularDistancia(lat2, lon2) {
             if (!coordsUsuario) return null;
-            const R = 6371; // Raio da Terra em km
+            const R = 6371;
             const dLat = (lat2 - coordsUsuario.lat) * Math.PI / 180;
             const dLon = (lon2 - coordsUsuario.lng) * Math.PI / 180;
-            const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-                      Math.cos(coordsUsuario.lat * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon/2) * Math.sin(dLon/2);
-            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-            const d = R * c;
-            return d > 1 ? d.toFixed(1) + " km" : Math.round(d * 1000) + " metros";
+            const a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(coordsUsuario.lat * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon/2) * Math.sin(dLon/2);
+            const d = R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)));
+            return d > 1 ? d.toFixed(1) + " km" : Math.round(d * 1000) + " m";
         }
 
-        // --- EXIBIÇÃO NO MAPA ---
         function exibirPonto(local) {
             if (marcadorAtual) map.removeLayer(marcadorAtual);
             map.flyTo([local.lat, local.lng], 18);
-
             const dist = calcularDistancia(local.lat, local.lng);
             const labelDistancia = dist ? `<span class="distancia-label">📍 A ${dist} de você</span>` : '';
             const urlGps = `https://www.google.com/maps/search/?api=1&query=${local.lat},${local.lng}`;
-
-            marcadorAtual = L.marker([local.lat, local.lng]).addTo(map)
-                .bindPopup(`
-                    <div class="popup-card">
-                        <strong>${local.bairro}</strong><br>
-                        Quadra: ${local.quadra}<br>
-                        CEP: ${local.cep || 'Não informado'}<br>
-                        ${labelDistancia}
-                        <small style="display:block; margin-top:5px; color:#7f8c8d">${local.obs || ''}</small>
-                        <button class="btn-gps" onclick="window.open('${urlGps}', '_blank')">ABRIR NO GPS</button>
-                    </div>
-                `).openPopup();
+            marcadorAtual = L.marker([local.lat, local.lng]).addTo(map).bindPopup(`
+                <div class="popup-card">
+                    <strong>${local.bairro}</strong><br>Quadra: ${local.quadra}<br>CEP: ${local.cep || '---'}<br>${labelDistancia}
+                    <small style="display:block;margin-top:5px;color:#7f8c8d">${local.obs || ''}</small>
+                    <button class="btn-gps" onclick="window.open('${urlGps}', '_blank')">ABRIR NO GPS</button>
+                </div>
+            `).openPopup();
         }
 
-        // --- CONTROLES ---
         function toggleSatelite() {
-            if (map.hasLayer(layerRua)) {
-                map.removeLayer(layerRua);
-                map.addLayer(layerSatelite);
-            } else {
-                map.removeLayer(layerSatelite);
-                map.addLayer(layerRua);
-            }
+            if (map.hasLayer(layerRua)) { map.removeLayer(layerRua); map.addLayer(layerSatelite); }
+            else { map.removeLayer(layerSatelite); map.addLayer(layerRua); }
         }
 
-        function minhaLocalizacao() {
-            map.locate({setView: true, maxZoom: 16});
-        }
+        function minhaLocalizacao() { map.locate({setView: true, maxZoom: 16}); }
 
-        map.on('locationfound', function(e) {
+        map.on('locationfound', (e) => {
             coordsUsuario = e.latlng;
             if (marcadorVoce) map.removeLayer(marcadorVoce);
-            marcadorVoce = L.circle(e.latlng, {radius: 12, color: '#3498db', fillColor: '#3498db', fillOpacity: 0.6}).addTo(map)
-                .bindPopup("Você está aqui!");
+            marcadorVoce = L.circle(e.latlng, {radius: 12, color: '#3498db', fillColor: '#3498db', fillOpacity: 0.6}).addTo(map);
         });
 
         function toggleSuggestMode() {
-    modoSugestao = !modoSugestao;
-    const btn = document.getElementById('btnSuggest');
-    
-    if (modoSugestao) {
-        btn.classList.add('active-mode');
-    } else {
-        btn.classList.remove('active-mode');
-    }
-}
+            modoSugestao = !modoSugestao;
+            document.getElementById('btnSuggest').classList.toggle('active-mode', modoSugestao);
+        }
 
-        map.on('click', function(e) {
+        map.on('click', (e) => {
             if (modoSugestao) {
-                const lat = e.latlng.lat.toFixed(6);
-                const lng = e.latlng.lng.toFixed(6);
                 const urlBase = "https://docs.google.com/forms/d/e/1FAIpQLSc5BV7pRFTZzJW-XfCjkWTLYu16VFZ47qolVYP7eWW4RbxzAg/viewform";
-                window.open(`${urlBase}?entry.1414645035=${lat},${lng}`, '_blank');
+                window.open(`${urlBase}?entry.1414645035=${e.latlng.lat.toFixed(6)},${e.latlng.lng.toFixed(6)}`, '_blank');
                 toggleSuggestMode();
+                return;
             }
+            let pProx = null, mDist = 0.00045;
+            baseDeDados.forEach(p => {
+                const d = Math.sqrt(Math.pow(p.lat - e.latlng.lat, 2) + Math.pow(p.lng - e.latlng.lng, 2));
+                if (d < mDist) { mDist = d; pProx = p; }
+            });
+            if (pProx) exibirPonto(pProx);
         });
 
         window.onload = inicializarApp;
