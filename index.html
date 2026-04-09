@@ -16,15 +16,20 @@
         select { background: white; color: #333; }
         button { background: #27ae60; color: white; font-weight: bold; cursor: pointer; margin-top: 5px; }
         button:disabled { background: #7f8c8d; }
-        #map { flex-grow: 1; width: 100%; }
+        #map { flex-grow: 1; width: 100%; position: relative; }
         
-        /* Botão de Localização Flutuante */
         .btn-geo { 
-            position: absolute; bottom: 20px; right: 20px; z-index: 1000;
+            position: absolute; bottom: 80px; right: 20px; z-index: 1000;
             background: white; width: 50px; height: 50px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3); border: none; cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3); border: none; cursor: pointer; font-size: 20px;
         }
+
+        #footer { 
+            background: #2c3e50; color: #bdc3c7; font-size: 10px; text-align: center; 
+            padding: 5px; border-top: 1px solid #34495e; 
+        }
+
         .popup-card { text-align: center; min-width: 150px; }
         .btn-gps { background: #3498db; color: white; border: none; padding: 10px; border-radius: 5px; width: 100%; cursor: pointer; font-weight: bold; margin-top: 10px; }
     </style>
@@ -49,11 +54,13 @@
         </div>
     </div>
 
-    <div id="map"></div>
-    
-    <button class="btn-geo" onclick="minhaLocalizacao()" title="Onde eu estou?">
-        📍
-    </button>
+    <div id="map">
+        <button class="btn-geo" onclick="minhaLocalizacao()">📍</button>
+    </div>
+
+    <div id="footer">
+        Atualizado em: 08/04/2026 | <span id="totalQuadras">0</span> quadras mapeadas
+    </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="dados.js"></script>
@@ -67,6 +74,7 @@
 
         let marcadorAtual = null;
         let marcadorVoce = null;
+        let timerCliqueLongo;
 
         function inicializarApp() {
             const selectBairro = document.getElementById('selBairro');
@@ -77,6 +85,7 @@
                 opt.value = bairro; opt.innerHTML = bairro;
                 selectBairro.appendChild(opt);
             });
+            document.getElementById('totalQuadras').innerText = baseDeDados.length;
         }
 
         function atualizarListaQuadras() {
@@ -108,7 +117,7 @@
                         <strong>${local.bairro}</strong><br>
                         Quadra: ${local.quadra}<br>
                         <small>${local.obs || ''}</small>
-                        <button class="btn-gps" onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=${local.lat},${local.lng}')">COMO CHEGAR</button>
+                        <button class="btn-gps" onclick="window.open('http://googleusercontent.com/maps.google.com/3{local.lat},${local.lng}')">COMO CHEGAR</button>
                     </div>
                 `).openPopup();
             document.getElementById('selBairro').value = local.bairro;
@@ -123,7 +132,6 @@
             if (local) exibirPonto(local);
         }
 
-        // FUNÇÃO DE GEOLOCALIZAÇÃO
         function minhaLocalizacao() {
             map.locate({setView: true, maxZoom: 16});
         }
@@ -134,9 +142,22 @@
                 .bindPopup("Você está aqui!").openPopup();
         });
 
-        map.on('locationerror', function() {
-            alert("Não foi possível encontrar sua localização. Verifique o GPS.");
+        map.on('mousedown', function(e) {
+            timerCliqueLongo = setTimeout(function() {
+                const lat = e.latlng.lat.toFixed(6);
+                const lng = e.latlng.lng.toFixed(6);
+                
+                if (confirm(`Deseja sugerir o cadastro de uma nova quadra neste local?\nCoordenadas: ${lat}, ${lng}`)) {
+                    const idCampoForm = "entry.1414645035";
+                    const urlBase = "https://docs.google.com/forms/d/e/1FAIpQLSc5BV7pRFTZzJW-XfCjkWTLYu16VFZ47qolVYP7eWW4RbxzAg/viewform";
+                    const urlFinal = `${urlBase}?${idCampoForm}=${lat},${lng}`;
+                    
+                    window.open(urlFinal, '_blank');
+                }
+            }, 1000); // 1 segundo para ativar
         });
+
+        map.on('mouseup mousemove zoomstart', () => clearTimeout(timerCliqueLongo));
 
         map.on('click', function(e) {
             const cliqueLat = e.latlng.lat;
