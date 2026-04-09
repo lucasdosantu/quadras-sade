@@ -21,27 +21,20 @@ O aplicativo se destina a moradores, motoristas e entregadores da cidade que bus
 
 O projeto foi construído seguindo princípios de **modularização** para facilitar a manutenção:
 
-├── index.html          # Interface principal do usuário
-
-├── dados.js            # "Banco de dados" em formato JSON
-
-├── manifest.json       # Configurações do PWA
-
-├── sw.js               # Motor de Cache Offline
-
+```text
+/quadras-sade
+├── index.html           # Interface principal e estrutura do app
+├── dados.js             # Base de dados (JSON) das quadras e CEPs
+├── manifest.json        # Configurações de instalação do PWA
+├── sw.js                # Motor de Service Worker (Cache Offline)
 ├── /css
-
-│   └── estilo-mapa.css # Estilização completa e responsiva
-
+│   └── estilo-mapa.css  # Layout, cores e responsividade (CSS)
 └── /js
-
-    ├── config.js       # Inicialização do mapa e camadas
-    
-    ├── gps.js          # Lógica de geolocalização e Haversine
-    
-    ├── busca.js        # Motor de pesquisa e sugestões
-    
-    └── acoes.js        # Manipulação de eventos e pop-ups
+│   ├── config.js        # Configuração do mapa e camadas Google
+│   ├── gps.js           # Geolocalização e cálculo de distância
+│   ├── busca.js         # Lógica do motor de busca e sugestões
+│   └── acoes.js         # Eventos de clique, pop-ups e formulários
+```
 
 ## 🛠️ Tecnologias Utilizadas
 
