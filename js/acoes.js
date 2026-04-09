@@ -1,4 +1,3 @@
-// Adicione esta variável no topo se ela ainda não estiver no config.js
 let marcadorAtual = null;
 
 function exibirPonto(local) {
@@ -9,7 +8,6 @@ function exibirPonto(local) {
     const dist = (typeof calcularDistancia === 'function') ? calcularDistancia(local.lat, local.lng) : null;
     const labelDistancia = dist ? `<span class="distancia-label">📍 A ${dist} de você</span>` : '';
     
-    // CORREÇÃO: URL corrigida para abrir o GPS do Google Maps corretamente
     const urlGps = `https://www.google.com/maps/dir/?api=1&destination=${local.lat},${local.lng}`;
 
     marcadorAtual = L.marker([local.lat, local.lng]).addTo(map).bindPopup(`
