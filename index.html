@@ -1,9 +1,9 @@
-// Licensed under CC BY-NC 4.0: https://creativecommons.org/licenses/by-nc/4.0/
 <!DOCTYPE html>
+// Licensed under CC BY-NC 4.0: https://creativecommons.org/licenses/by-nc/4.0/
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SADE - Localizador de Quadras</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="css/estilo-mapa.css">
@@ -12,7 +12,7 @@
 <body>
     <div id="header">
         <div class="search-container">
-            <input type="text" id="mainSearch" class="search-box" placeholder="Digite Quadra, CEP ou Bairro..." list="listaSugestoes" oninput="processarBusca()">
+            <input type="text" id="mainSearch" class="search-box" placeholder="Digite Quadra, CEP ou Bairro..." list="listaSugestoes">
             <datalist id="listaSugestoes"></datalist>
         </div>
     </div>
@@ -29,7 +29,7 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="dados.js"></script>
-    
+
     <script src="js/config.js"></script>
     <script src="js/gps.js"></script>
     <script src="js/busca.js"></script>
@@ -37,19 +37,18 @@
 
     <script>
         window.onload = () => {
-    document.getElementById('totalQuadras').innerText = baseDeDados.length;
-    document.getElementById('anoAtual').innerText = new Date().getFullYear();
-    minhaLocalizacao();
-};
+            if (typeof baseDeDados !== 'undefined') {
+                document.getElementById('totalQuadras').innerText = baseDeDados.length;
+            }
+            document.getElementById('anoAtual').innerText = new Date().getFullYear();
+            minhaLocalizacao();
+        };
 
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+              .then(() => console.log("SADE: Offline pronto."))
+              .catch(err => console.error("SADE: Erro no SW", err));
+        }
     </script>
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js')
-      .then(() => console.log("Service Worker registrado com sucesso!"))
-      .catch(err => console.log("Erro ao registrar Service Worker:", err));
-  }
-</script>
 </body>
 </html>
-
