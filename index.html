@@ -97,6 +97,7 @@
 
         function inicializarApp() {
             const selectBairro = document.getElementById('selBairro');
+            if(!selectBairro) return;
             selectBairro.innerHTML = '<option value="">Selecione o Bairro...</option>';
             const bairrosUnicos = [...new Set(baseDeDados.map(item => item.bairro))].sort();
             bairrosUnicos.forEach(bairro => {
@@ -131,14 +132,16 @@
             if (marcadorAtual) map.removeLayer(marcadorAtual);
             map.flyTo([local.lat, local.lng], 18);
 
-            // CORREÇÃO DA URL DO GPS AQUI:
+            // LINK CORRIGIDO PARA O PADRÃO GOOGLE MAPS SEARCH API
+            const urlGps = `https://www.google.com/maps/search/?api=1&query=${local.lat},${local.lng}`;
+
             marcadorAtual = L.marker([local.lat, local.lng]).addTo(map)
                 .bindPopup(`
                     <div class="popup-card">
                         <strong>${local.bairro}</strong><br>
                         Quadra: ${local.quadra}<br>
                         <small>${local.obs || ''}</small>
-                        <button class="btn-gps" onclick="window.open('https://www.google.com/maps/search/?api=1&query=${local.lat},${local.lng}', '_blank')">COMO CHEGAR</button>
+                        <button class="btn-gps" onclick="window.open('${urlGps}', '_blank')">COMO CHEGAR</button>
                     </div>
                 `).openPopup();
 
