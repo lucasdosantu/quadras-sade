@@ -21,17 +21,26 @@ O aplicativo se destina a moradores, motoristas e entregadores da cidade que bus
 
 O projeto foi construído seguindo princípios de **modularização** para facilitar a manutenção:
 
-/
 ├── index.html          # Interface principal do usuário
+
 ├── dados.js            # "Banco de dados" em formato JSON
+
 ├── manifest.json       # Configurações do PWA
+
 ├── sw.js               # Motor de Cache Offline
+
 ├── /css
+
 │   └── estilo-mapa.css # Estilização completa e responsiva
+
 └── /js
+
     ├── config.js       # Inicialização do mapa e camadas
+    
     ├── gps.js          # Lógica de geolocalização e Haversine
+    
     ├── busca.js        # Motor de pesquisa e sugestões
+    
     └── acoes.js        # Manipulação de eventos e pop-ups
 
 ## 🛠️ Tecnologias Utilizadas
