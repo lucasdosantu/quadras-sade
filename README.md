@@ -8,7 +8,7 @@ O aplicativo se destina a moradores, motoristas e entregadores da cidade que bus
 
 ## 🚀 Funcionalidades
 
-[Preview do App](img/preview.png)
+![Preview do App](img/preview.png)
 
 [https://lucasdosantu.github.io/quadras-sade/](https://lucasdosantu.github.io/quadras-sade/)
 
