@@ -1,14 +1,15 @@
 function exibirPonto(local) {
-    if (!map) return;
-    if (marcadorAtual) map.removeLayer(marcadorAtual);
+    if (typeof marcadorAtual !== 'undefined' && marcadorAtual) {
+        map.removeLayer(marcadorAtual);
+    }
 
     map.flyTo([local.lat, local.lng], 18);
 
     let labelDistancia = '';
-    try {
+    if (typeof calcularDistancia === 'function') {
         const dist = calcularDistancia(local.lat, local.lng);
         if (dist) labelDistancia = `<span class="distancia-label">📍 A ${dist} de você</span>`;
-    } catch (e) { console.log("GPS ainda não obteve posição"); }
+    }
 
     const urlGps = `https://www.google.com/maps/dir/?api=1&destination=${local.lat},${local.lng}`;
 
@@ -19,7 +20,7 @@ function exibirPonto(local) {
             CEP: ${local.cep || '---'}<br>
             ${labelDistancia}
             <small style="display:block;margin-top:5px;color:#7f8c8d">${local.obs || ''}</small>
-            <button class="btn-gps" onclick="window.open('${urlGps}', '_blank')">IR PARA O LOCAL</button>
+            <button class="btn-gps" onclick="window.open('${urlGps}', '_blank')" style="width:100%;margin-top:10px;padding:8px;background:#27ae60;color:white;border:none;border-radius:4px;font-weight:bold;">IR PARA O LOCAL</button>
         </div>
     `).openPopup();
 }
@@ -27,23 +28,20 @@ function exibirPonto(local) {
 function toggleSuggestMode() {
     modoSugestao = !modoSugestao;
     const btn = document.getElementById('btnSuggest');
-    if (btn) {
-        btn.classList.toggle('active-mode', modoSugestao);
-        btn.style.background = modoSugestao ? '#e74c3c' : ''; // Feedback visual imediato
-    }
+    if (btn) btn.classList.toggle('active-mode', modoSugestao);
 }
 
-map.on('click', (e) => {
+map.on('click', function(e) {
     if (modoSugestao) {
         const urlBase = "https://docs.google.com/forms/d/e/1FAIpQLSc5BV7pRFTZzJW-XfCjkWTLYu16VFZ47qolVYP7eWW4RbxzAg/viewform";
         const coords = `${e.latlng.lat.toFixed(6)},${e.latlng.lng.toFixed(6)}`;
-        window.open(`${urlBase}?usp=pp_url&entry.1414645035=${coords}`, '_blank');
+        window.open(`${urlBase}?entry.1414645035=${coords}`, '_blank');
         toggleSuggestMode();
         return;
     }
 
     let pProx = null;
-    let mDist = 0.00045; // Raio de clique (aproximadamente 50 metros)
+    let mDist = 0.00045;
 
     baseDeDados.forEach(p => {
         const d = Math.sqrt(Math.pow(p.lat - e.latlng.lat, 2) + Math.pow(p.lng - e.latlng.lng, 2));
