@@ -1,4 +1,4 @@
-const cacheName = 'mapa-sad-v1.1';
+const cacheName = 'mapa-sad-v1.2';
 const tileCacheName = 'mapa-tiles-v1';
 
 const assets = [
@@ -17,12 +17,24 @@ self.addEventListener('install', e => {
   e.waitUntil(
     caches.open(cacheName).then(cache => cache.addAll(assets))
   );
+  self.skipWaiting();
+});
+
+self.addEventListener('activate', e => {
+  e.waitUntil(
+    caches.keys().then(keys => {
+      return Promise.all(
+        keys.filter(key => key !== cacheName && key !== tileCacheName)
+            .map(key => caches.delete(key))
+      );
+    })
+  );
 });
 
 self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
 
-  if (url.host === 'mt0.google.com' || url.host === 'mt1.google.com' || url.host === 'mt2.google.com' || url.host === 'mt3.google.com') {
+  if (url.host.includes('google.com') && url.pathname.includes('vt')) {
     e.respondWith(
       caches.open(tileCacheName).then(cache => {
         return cache.match(e.request).then(response => {
