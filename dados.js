@@ -128,7 +128,7 @@ const baseDeDados = [
     {
         "bairro": "Centro",
         "quadra": "58",
-        "cep": "",
+        "cep": "72900000",
         "lat": -15.949916,
         "lng": -48.262569,
         "obs": "Quadra da barbearia Ruben"
