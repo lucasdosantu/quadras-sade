@@ -1,5 +1,5 @@
-const cacheName = 'mapa-sad-v100426.002';
-const tileCacheName = 'mapa-tiles-v100426.002';
+const cacheName = 'mapa-sad-v100426.003';
+const tileCacheName = 'mapa-tiles-v100426.003';
 
 const assets = [
   './',
