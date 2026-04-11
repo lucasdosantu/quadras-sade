@@ -125,4 +125,12 @@ const baseDeDados = [
         "lng": -48.256401,
         "obs": "CFC Ágile/Japão da construção"
     }
+    {
+        "bairro": "Centro",
+        "quadra": "58",
+        "cep": "",
+        "lat": -15.949916,
+        "lng": -48.262569,
+        "obs": "Quadra da barbearia Ruben"
+    }
 ];
