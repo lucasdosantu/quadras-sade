@@ -126,11 +126,11 @@ const baseDeDados = [
         "obs": "CFC Ágile/Japão da construção"
     },
     {
-    "bairro": "Centro",
-    "quadra": "58",
-    "cep": "72900000",
-    "lat": -15.949916,
-    "lng": -48.262569,
-    "obs": "Quadra da barbearia Ruben"
+        "bairro": "Centro",
+        "quadra": "58",
+        "cep": "72900000",
+        "lat": -15.949916,
+        "lng": -48.262569,
+        "obs": "Quadra da barbearia Ruben"
     }
 ];
