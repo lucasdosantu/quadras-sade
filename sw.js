@@ -1,5 +1,5 @@
-const cacheName = 'mapa-sad-v100426.005';
-const tileCacheName = 'mapa-tiles-v100426.005';
+const cacheName = 'mapa-sad-v' + new Date().toISOString().slice(0,10).replace(/-/g, '');
+const tileCacheName = 'mapa-tiles-v' + new Date().toISOString().slice(0,10).replace(/-/g, '');
 
 const assets = [
   './',
@@ -9,7 +9,6 @@ const assets = [
   './js/gps.js',
   './js/busca.js',
   './js/acoes.js',
-  './dados.js',
   './manifest.json'
 ];
 
@@ -34,6 +33,13 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
 
+  // Sempre buscar dados.js da rede para garantir dados atualizados
+  if (url.pathname.includes('dados.js')) {
+    e.respondWith(fetch(e.request));
+    return;
+  }
+
+  // Cache strategy para tiles do Google Maps
   if (url.host.includes('google.com') && url.pathname.includes('vt')) {
     e.respondWith(
       caches.open(tileCacheName).then(cache => {
@@ -46,6 +52,7 @@ self.addEventListener('fetch', e => {
       })
     );
   } else {
+    // Cache-first para outros assets
     e.respondWith(
       caches.match(e.request).then(res => res || fetch(e.request))
     );
