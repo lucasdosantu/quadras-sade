@@ -1,48 +1,74 @@
 const mainSearch = document.getElementById('mainSearch');
 const listaSugestoes = document.getElementById('listaSugestoes');
 
-mainSearch.addEventListener('input', () => {
-    processarBusca();
-});
+let fuse;
+let debounceTimer;
 
-function processarBusca() {
-    const termo = mainSearch.value.toLowerCase();
-    
-    const encontrado = baseDeDados.find(item => 
-        `${item.quadra} - ${item.bairro} (${item.cep || 'Sem CEP'})`.toLowerCase() === termo
-    );
+function prepararMotorBusca(dados) {
+    const opcoes = {
+        keys: [
+            { name: 'quadra', weight: 0.7 },
+            { name: 'bairro', weight: 0.5 },
+            { name: 'cep', weight: 0.2 }
+        ],
+        threshold: 0.3,
+        findAllMatches: true,
+        useExtendedSearch: true
+    };
 
-    if (encontrado) {
-        if (typeof exibirPonto === 'function') {
-            exibirPonto(encontrado);
-            mainSearch.blur();
-            listaSugestoes.innerHTML = "";
-        }
-    } else {
-        atualizarSugestoes(termo);
-    }
+    fuse = new Fuse(dados, opcoes);
 }
 
-function atualizarSugestoes(termo) {
+mainSearch.addEventListener('input', () => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+        const termo = mainSearch.value.trim();
+        
+        if (termo.length < 2) {
+            listaSugestoes.innerHTML = "";
+            return;
+        }
+
+        const resultados = fuse.search(termo);
+
+        verificarMatchExato(resultados, termo);
+        atualizarSugestoes(resultados);
+    }, 250);
+});
+
+function atualizarSugestoes(resultados) {
     listaSugestoes.innerHTML = "";
-    if (termo.length < 1) return;
 
-    const filtrados = baseDeDados.filter(item => 
-        item.quadra.toLowerCase().includes(termo) || 
-        (item.cep && item.cep.includes(termo)) || 
-        item.bairro.toLowerCase().includes(termo)
-    );
-
-    filtrados.sort((a, b) => {
-        if (a.bairro !== b.bairro) return a.bairro.localeCompare(b.bairro);
-        const numA = parseInt(a.quadra.replace(/\D/g, '')) || 0;
-        const numB = parseInt(b.quadra.replace(/\D/g, '')) || 0;
-        return numA - numB;
-    });
-
-    filtrados.slice(0, 8).forEach(item => {
+    if (resultados.length === 0) {
         const opt = document.createElement('option');
-        opt.value = `${item.quadra} - ${item.bairro} (${item.cep || 'Sem CEP'})`;
+        opt.value = "Nenhuma quadra encontrada";
+        opt.disabled = true;
+        listaSugestoes.appendChild(opt);
+        return;
+    }
+
+    const topResultados = resultados.slice(0, 10);
+
+    topResultados.forEach(({ item }) => {
+        const opt = document.createElement('option');
+        opt.value = `${item.quadra}, ${item.bairro} (${item.cep || 'Sem CEP'})`;
         listaSugestoes.appendChild(opt);
     });
 }
+
+function verificarMatchExato(resultados, termo) {
+    if (resultados.length > 0) {
+        const melhorMatch = resultados[0].item;
+        const stringComparacao = `${melhorMatch.quadra}, ${melhorMatch.bairro} (${melhorMatch.cep || 'Sem CEP'})`.toLowerCase();
+        
+        if (stringComparacao === termo.toLowerCase()) {
+            if (typeof exibirPonto === 'function') {
+                exibirPonto(melhorMatch);
+                mainSearch.blur();
+                listaSugestoes.innerHTML = "";
+            }
+        }
+    }
+}
+
+prepararMotorBusca(baseDeDados);
