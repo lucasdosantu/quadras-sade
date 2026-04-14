@@ -8,35 +8,42 @@ let debounceTimer;
 function prepararMotorBusca(dados) {
     const opcoes = {
         keys: [
-            { name: 'quadra', weight: 0.7 },
-            { name: 'bairro', weight: 0.5 },
-            { name: 'cep', weight: 0.2 }
+            { name: 'quadra', weight: 0.9 },
+            { name: 'bairro', weight: 0.4 }
         ],
-        threshold: 0.3,
-        findAllMatches: true,
-        useExtendedSearch: true
+        threshold: 0.2,
+        location: 0,
+        distance: 0,
+        minMatchCharLength: 1
     };
-
     fuse = new Fuse(dados, opcoes);
+}
+
+function processarBusca() {
+    const termoOriginal = mainSearch.value.trim();
+    
+    if (termoOriginal.length < 1) {
+        listaSugestoes.innerHTML = "";
+        return;
+    }
+
+    const termoBusca = termoOriginal.length > 3 
+        ? termoOriginal.replace(/quadra|bairro/gi, "").trim() 
+        : termoOriginal;
+
+    const resultados = fuse.search(termoBusca);
+
+    atualizarSugestoes(resultados);
+    verificarMatchExato(resultados, termoOriginal);
 }
 
 mainSearch.addEventListener('input', () => {
     clearSearch.style.display = mainSearch.value.length > 0 ? 'block' : 'none';
     clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => {
-        const termo = mainSearch.value.trim();
-        
-        if (termo.length < 2) {
-            listaSugestoes.innerHTML = "";
-            return;
-        }
-
-        const resultados = fuse.search(termo);
-
-        verificarMatchExato(resultados, termo);
-        atualizarSugestoes(resultados);
-    }, 250);
+    debounceTimer = setTimeout(processarBusca, 250);
 });
+
+mainSearch.addEventListener('change', processarBusca);
 
 clearSearch.addEventListener('click', () => {
     mainSearch.value = "";
@@ -47,18 +54,9 @@ clearSearch.addEventListener('click', () => {
 
 function atualizarSugestoes(resultados) {
     listaSugestoes.innerHTML = "";
+    if (resultados.length === 0) return;
 
-    if (resultados.length === 0) {
-        const opt = document.createElement('option');
-        opt.value = "Nenhuma quadra encontrada";
-        opt.disabled = true;
-        listaSugestoes.appendChild(opt);
-        return;
-    }
-
-    const topResultados = resultados.slice(0, 10);
-
-    topResultados.forEach(({ item }) => {
+    resultados.slice(0, 10).forEach(({ item }) => {
         const opt = document.createElement('option');
         opt.value = `${item.quadra} - ${item.bairro} (${item.cep || 'Sem CEP'})`;
         listaSugestoes.appendChild(opt);
@@ -66,18 +64,18 @@ function atualizarSugestoes(resultados) {
 }
 
 function verificarMatchExato(resultados, termo) {
-    if (resultados.length > 0) {
-        const melhorMatch = resultados[0].item;
-        const stringComparacao = `${melhorMatch.quadra} - ${melhorMatch.bairro} (${melhorMatch.cep || 'Sem CEP'})`.toLowerCase();
-        
-        if (stringComparacao === termo.toLowerCase()) {
-            if (typeof exibirPonto === 'function') {
-                exibirPonto(melhorMatch);
-                mainSearch.blur();
-                listaSugestoes.innerHTML = "";
-            }
-        }
+    const match = resultados.find(({ item }) => {
+        const stringComparacao = `${item.quadra} - ${item.bairro} (${item.cep || 'Sem CEP'})`;
+        return stringComparacao.toLowerCase() === termo.toLowerCase();
+    });
+
+    if (match && typeof exibirPonto === 'function') {
+        exibirPonto(match.item);
+        mainSearch.blur(); 
+        listaSugestoes.innerHTML = "";
     }
 }
 
-prepararMotorBusca(baseDeDados);
+if (typeof baseDeDados !== 'undefined') {
+    prepararMotorBusca(baseDeDados);
+}
