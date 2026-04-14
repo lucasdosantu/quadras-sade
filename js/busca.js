@@ -21,7 +21,7 @@ function prepararMotorBusca(dados) {
 
 function processarBusca() {
     const termoOriginal = mainSearch.value.trim();
-    
+
     if (termoOriginal.length < 1) {
         listaSugestoes.innerHTML = "";
         return;
@@ -37,15 +37,15 @@ function processarBusca() {
     verificarMatchExato(resultados, termoOriginal);
 }
 
-mainSearch.addEventListener('input', () => {
-    clearSearch.style.display = mainSearch.value.length > 0 ? 'block' : 'none';
+  mainSearch.addEventListener('input', () => {
+     clearSearch.style.display = mainSearch.value.length > 0 ? 'block' : 'none';
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(processarBusca, 250);
 });
 
-mainSearch.addEventListener('change', processarBusca);
+  mainSearch.addEventListener('change', processarBusca);
 
-clearSearch.addEventListener('click', () => {
+  clearSearch.addEventListener('click', () => {
     mainSearch.value = "";
     listaSugestoes.innerHTML = "";
     clearSearch.style.display = 'none';
@@ -64,15 +64,21 @@ function atualizarSugestoes(resultados) {
 }
 
 function verificarMatchExato(resultados, termo) {
-    const match = resultados.find(({ item }) => {
-        const stringComparacao = `${item.quadra} - ${item.bairro} (${item.cep || 'Sem CEP'})`;
-        return stringComparacao.toLowerCase() === termo.toLowerCase();
+    if (!termo || termo.length < 3) return; 
+
+    const termoLimpo = termo.toLowerCase().trim();
+
+    const matchReal = baseDeDados.find(item => {
+        const formatoLista = `${item.quadra} - ${item.bairro} (${item.cep || 'Sem CEP'})`.toLowerCase();
+        return formatoLista === termoLimpo;
     });
 
-    if (match && typeof exibirPonto === 'function') {
-        exibirPonto(match.item);
+    if (matchReal && typeof exibirPonto === 'function') {
+        exibirPonto(matchReal);
         mainSearch.blur(); 
         listaSugestoes.innerHTML = "";
+
+        clearTimeout(debounceTimer);
     }
 }
 
