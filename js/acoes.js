@@ -1,19 +1,24 @@
 function exibirPonto(local) {
+    if (!local || typeof local.lat === 'undefined' || typeof local.lng === 'undefined') return;
+
     if (typeof marcadorAtual !== 'undefined' && marcadorAtual) {
         map.removeLayer(marcadorAtual);
     }
 
-    map.flyTo([local.lat, local.lng], 18);
+    const lat = parseFloat(local.lat);
+    const lng = parseFloat(local.lng);
+
+    map.flyTo([lat, lng], 18);
 
     let labelDistancia = '';
     if (typeof calcularDistancia === 'function') {
-        const dist = calcularDistancia(local.lat, local.lng);
+        const dist = calcularDistancia(lat, lng);
         if (dist) labelDistancia = `<span class="distancia-label">📍 A ${dist} de você</span>`;
     }
 
     const urlGps = `https://www.google.com/maps/search/?api=1&query=${local.lat},${local.lng}`;
 
-    marcadorAtual = L.marker([local.lat, local.lng]).addTo(map).bindPopup(`
+    marcadorAtual = L.marker([lat, lng]).addTo(map).bindPopup(`
         <div class="popup-card">
             <strong>${local.bairro}</strong><br>
             Quadra: ${local.quadra}<br>
@@ -32,7 +37,7 @@ function toggleSuggestMode() {
 }
 
 map.on('click', function(e) {
-    if (modoSugestao) {
+    if (typeof modoSugestao !== 'undefined' && modoSugestao) {
         const urlBase = "https://docs.google.com/forms/d/e/1FAIpQLSc5BV7pRFTZzJW-XfCjkWTLYu16VFZ47qolVYP7eWW4RbxzAg/viewform";
         const coords = `${e.latlng.lat.toFixed(6)},${e.latlng.lng.toFixed(6)}`;
         window.open(`${urlBase}?entry.1414645035=${coords}`, '_blank');
@@ -46,15 +51,17 @@ map.on('click', function(e) {
     const clickLat = e.latlng.lat;
     const clickLng = e.latlng.lng;
 
-    for (let i = 0; i < baseDeDados.length; i++) {
-        const p = baseDeDados[i];
-        const dLat = p.lat - clickLat;
-        const dLng = p.lng - clickLng;
-        const dSq = (dLat * dLat) + (dLng * dLng);
+    if (typeof baseDeDados !== 'undefined') {
+        for (let i = 0; i < baseDeDados.length; i++) {
+            const p = baseDeDados[i];
+            const dLat = parseFloat(p.lat) - clickLat;
+            const dLng = parseFloat(p.lng) - clickLng;
+            const dSq = (dLat * dLat) + (dLng * dLng);
 
-        if (dSq < mDistSq) {
-            mDistSq = dSq;
-            pProx = p;
+            if (dSq < mDistSq) {
+                mDistSq = dSq;
+                pProx = p;
+            }
         }
     }
 
