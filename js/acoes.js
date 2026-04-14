@@ -9,7 +9,7 @@ function exibirPonto(local) {
     const lng = parseFloat(local.lng);
 
     if (typeof map !== 'undefined') {
-        map.flyTo([lat, lng], 18);
+        map.flyTo([lat, lng], 16);
     }
 
     let labelDistancia = '';
