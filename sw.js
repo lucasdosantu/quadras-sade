@@ -1,6 +1,4 @@
-const cacheName = 'mapa-sad-v' + new Date().toISOString().slice(0,10).replace(/-/g, '');
-const tileCacheName = 'mapa-tiles-v' + new Date().toISOString().slice(0,10).replace(/-/g, '');
-
+const cacheName = 'sade-localizador-v1';
 const assets = [
   './',
   './index.html',
@@ -9,7 +7,9 @@ const assets = [
   './js/gps.js',
   './js/busca.js',
   './js/acoes.js',
-  './manifest.json'
+  './dados.js',
+  './manifest.json',
+  'https://cdn.jsdelivr.net/npm/fuse.js@7.0.0'
 ];
 
 self.addEventListener('install', e => {
@@ -23,38 +23,30 @@ self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys().then(keys => {
       return Promise.all(
-        keys.filter(key => key !== cacheName && key !== tileCacheName)
-            .map(key => caches.delete(key))
+        keys.map(key => {
+          if (key !== cacheName) {
+            return caches.delete(key);
+          }
+        })
       );
     })
   );
+  self.clients.claim();
 });
 
 self.addEventListener('fetch', e => {
-  const url = new URL(e.request.url);
-
-  // Sempre buscar dados.js da rede para garantir dados atualizados
-  if (url.pathname.includes('dados.js')) {
-    e.respondWith(fetch(e.request));
-    return;
-  }
-
-  // Cache strategy para tiles do Google Maps
-  if (url.host.includes('google.com') && url.pathname.includes('vt')) {
-    e.respondWith(
-      caches.open(tileCacheName).then(cache => {
-        return cache.match(e.request).then(response => {
-          return response || fetch(e.request).then(networkResponse => {
+  e.respondWith(
+    caches.open(cacheName).then(cache => {
+      return cache.match(e.request).then(cachedResponse => {
+        const networkFetch = fetch(e.request).then(networkResponse => {
+          if (networkResponse.status === 200) {
             cache.put(e.request, networkResponse.clone());
-            return networkResponse;
-          });
-        });
-      })
-    );
-  } else {
-    // Cache-first para outros assets
-    e.respondWith(
-      caches.match(e.request).then(res => res || fetch(e.request))
-    );
-  }
+          }
+          return networkResponse;
+        }).catch(() => {});
+
+        return cachedResponse || networkFetch;
+      });
+    })
+  );
 });
