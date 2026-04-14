@@ -132,5 +132,21 @@ const baseDeDados = [
         "lat": -15.949916,
         "lng": -48.262569,
         "obs": "Quadra da barbearia Ruben"
+    },
+    {
+        "bairro": "Beatriz 1",
+        "quadra": "44",
+        "cep": "72902-290",
+        "lat": -15.943376,
+        "lng": -48.298531,
+        "obs": "Quadra do mercado do baiano"
+    },
+    {
+        "bairro": "Vila parque",
+        "quadra": "A",
+        "cep": "72902-600",
+        "lat": -15.93042,
+        "lng": -48.294749,
+        "obs": "Quadra da academia boa forma"
     }
 ];
