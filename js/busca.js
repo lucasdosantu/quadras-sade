@@ -51,7 +51,7 @@ function atualizarSugestoes(resultados) {
 
     topResultados.forEach(({ item }) => {
         const opt = document.createElement('option');
-        opt.value = `${item.quadra}, ${item.bairro} (${item.cep || 'Sem CEP'})`;
+        opt.value = `${item.quadra} - ${item.bairro} (${item.cep || 'Sem CEP'})`;
         listaSugestoes.appendChild(opt);
     });
 }
@@ -59,7 +59,7 @@ function atualizarSugestoes(resultados) {
 function verificarMatchExato(resultados, termo) {
     if (resultados.length > 0) {
         const melhorMatch = resultados[0].item;
-        const stringComparacao = `${melhorMatch.quadra}, ${melhorMatch.bairro} (${melhorMatch.cep || 'Sem CEP'})`.toLowerCase();
+        const stringComparacao = `${melhorMatch.quadra} - ${melhorMatch.bairro} (${melhorMatch.cep || 'Sem CEP'})`.toLowerCase();
         
         if (stringComparacao === termo.toLowerCase()) {
             if (typeof exibirPonto === 'function') {
