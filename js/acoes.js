@@ -11,7 +11,7 @@ function exibirPonto(local) {
         if (dist) labelDistancia = `<span class="distancia-label">📍 A ${dist} de você</span>`;
     }
 
-    const urlGps = `https://www.google.com/maps/dir/?api=1&destination=${local.lat},${local.lng}`;
+    const urlGps = `https://www.google.com/maps/search/?api=1&query=${local.lat},${local.lng}`;
 
     marcadorAtual = L.marker([local.lat, local.lng]).addTo(map).bindPopup(`
         <div class="popup-card">
@@ -41,15 +41,22 @@ map.on('click', function(e) {
     }
 
     let pProx = null;
-    let mDist = 0.00045;
+    let mDistSq = 0.0000002; 
 
-    baseDeDados.forEach(p => {
-        const d = Math.sqrt(Math.pow(p.lat - e.latlng.lat, 2) + Math.pow(p.lng - e.latlng.lng, 2));
-        if (d < mDist) {
-            mDist = d;
+    const clickLat = e.latlng.lat;
+    const clickLng = e.latlng.lng;
+
+    for (let i = 0; i < baseDeDados.length; i++) {
+        const p = baseDeDados[i];
+        const dLat = p.lat - clickLat;
+        const dLng = p.lng - clickLng;
+        const dSq = (dLat * dLat) + (dLng * dLng);
+
+        if (dSq < mDistSq) {
+            mDistSq = dSq;
             pProx = p;
         }
-    });
+    }
 
     if (pProx) {
         exibirPonto(pProx);
