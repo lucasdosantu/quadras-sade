@@ -1,5 +1,5 @@
 function exibirPonto(local) {
-    if (!local || typeof local.lat === 'undefined' || typeof local.lng === 'undefined') return;
+    if (!local || !local.lat || !local.lng) return;
 
     if (typeof marcadorAtual !== 'undefined' && marcadorAtual) {
         map.removeLayer(marcadorAtual);
@@ -8,7 +8,9 @@ function exibirPonto(local) {
     const lat = parseFloat(local.lat);
     const lng = parseFloat(local.lng);
 
-    map.flyTo([lat, lng], 18);
+    if (typeof map !== 'undefined') {
+        map.flyTo([lat, lng], 18);
+    }
 
     let labelDistancia = '';
     if (typeof calcularDistancia === 'function') {
