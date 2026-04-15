@@ -19,6 +19,21 @@
     </div>
 
     <div id="map">
+
+      <div id="painel-rota" style="display: none; position:relative; top:10px; left:10px; z-index:2000; background:white; width:250px; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.3); transition: all 0.3s ease;">
+    <div onclick="alternarMinimizar()" style="background:#34A853; color:white; padding:12px; border-radius:10px 10px 0 0; font-weight:bold; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+        <span>📍 Minha Rota (<span id="contador-rota">0</span>)</span>
+        <span id="icone-minimizar">▼</span>
+    </div>
+
+    <div id="conteudo-rota">
+        <ul id="lista-rota-ui" style="list-style:none; padding:10px; margin:0; max-height:200px; overflow-y:auto; border-bottom:1px solid #eee;"></ul>
+        <div style="padding:10px;">
+            <button onclick="gerarLinkGoogleMaps()" style="width:100%; background:#4285F4; color:white; padding:12px; border:none; border-radius:5px; font-weight:bold; cursor:pointer;">ABRIR NO GOOGLE MAPS</button>
+        </div>
+    </div>
+</div>
+
         <div class="controls-right">
             <button class="btn-float btn-sat" onclick="event.stopPropagation(); toggleSatelite()">🛰️</button>
             <button class="btn-float btn-suggest" id="btnSuggest" onclick="event.stopPropagation(); toggleSuggestMode()">➕</button>
@@ -30,7 +45,6 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="dados.js"></script>
-
     <script src="js/config.js"></script>
     <script src="js/gps.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
