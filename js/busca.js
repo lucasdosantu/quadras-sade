@@ -9,12 +9,15 @@ function prepararMotorBusca(dados) {
     const opcoes = {
         keys: [
             { name: 'quadra', weight: 0.9 },
-            { name: 'bairro', weight: 0.4 }
+            { name: 'bairro', weight: 0.4 },
+            { name: 'cep', weight: 0.7 }
         ],
         threshold: 0.2,
         location: 0,
-        distance: 0,
-        minMatchCharLength: 1
+        distance: 70,
+        minMatchCharLength: 1,
+        findAllMatches: true,
+        useExtendedSearch: true
     };
     fuse = new Fuse(dados, opcoes);
 }
@@ -27,11 +30,16 @@ function processarBusca() {
         return;
     }
 
-    const termoBusca = termoOriginal.length > 3 
-        ? termoOriginal.replace(/quadra|bairro/gi, "").trim() 
+    let termoProcessado = termoOriginal.length > 3 
+        ? termoOriginal.replace(/quadra|bairro|cep|[.,]/gi, "").replace(/-/g, "").trim() 
         : termoOriginal;
 
-    const resultados = fuse.search(termoBusca);
+    const tokens = termoProcessado.split(/\s+/);
+    const termoFinal = tokens.length > 1 
+        ? tokens.map(t => `'${t}`).join(' ') 
+        : termoProcessado;
+
+    const resultados = fuse.search(termoFinal);
 
     atualizarSugestoes(resultados);
     verificarMatchExato(resultados, termoOriginal);
