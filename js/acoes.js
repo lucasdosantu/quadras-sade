@@ -98,7 +98,7 @@ function exibirPonto(local) {
         map.flyTo([lat, lng], 16);
     }
 
-    let localizacaoUsuario = null;
+    // let localizacaoUsuario = null;
 
     function monitorarLocalizacao() {
         if (navigator.geolocation) {
