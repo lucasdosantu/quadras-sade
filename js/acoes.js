@@ -1,4 +1,25 @@
 let rotaMinimizada = false;
+let pontosDaRota = [];
+let localizacaoUsuario = null;
+
+function monitorarLocalizacao() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(pos => {
+            localizacaoUsuario = {
+                lat: pos.coords.latitude,
+                lng: pos.coords.longitude,
+                quadra: "Minha Localização"
+            };
+            console.log("📍 GPS carregado:", localizacaoUsuario);
+        }, err => {
+            console.error("Erro ao obter localização:", err);
+        });
+    } else {
+        alert("Seu navegador não suporta geolocalização.");
+    }
+}
+monitorarLocalizacao();
+
 
 function alternarMinimizar() {
     const conteudo = document.getElementById('conteudo-rota');
@@ -16,8 +37,6 @@ function alternarMinimizar() {
     }
     rotaMinimizada = !rotaMinimizada;
 }
-
-let pontosDaRota = [];
 
 function adicionarARota(local) {
     if (pontosDaRota.find(p => p.quadra === local.quadra)) return;
@@ -97,21 +116,6 @@ function exibirPonto(local) {
     if (typeof map !== 'undefined') {
         map.flyTo([lat, lng], 16);
     }
-
-    // let localizacaoUsuario = null;
-
-    function monitorarLocalizacao() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(pos => {
-                localizacaoUsuario = {
-                    lat: pos.coords.latitude,
-                    lng: pos.coords.longitude,
-                    quadra: "Minha Localização"
-                };
-            });
-        }
-    }
-    monitorarLocalizacao();
 
     let labelDistancia = '';
     if (typeof calcularDistancia === 'function') {
