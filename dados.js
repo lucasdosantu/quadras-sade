@@ -1,11 +1,12 @@
 const baseDeDados = [
+  // CENTRO
     {
         "bairro": "Centro",
         "quadra": "61",
         "cep": "72900360",
         "lat": -15.94379,
         "lng": -48.266619,
-        "obs": "Quadra do Restaurante Gula's"
+        "obs": "Quadra do Restaurante Gulas"
     },
     {
         "bairro": "Centro",
@@ -133,6 +134,8 @@ const baseDeDados = [
         "lng": -48.262569,
         "obs": "Quadra da barbearia Ruben"
     },
+    
+    // BEATRIZ 1
     {
         "bairro": "Beatriz 1",
         "quadra": "44",
@@ -141,6 +144,8 @@ const baseDeDados = [
         "lng": -48.298531,
         "obs": "Quadra do mercado do baiano"
     },
+    
+    // VILA PARQUE
     {
         "bairro": "Vila parque",
         "quadra": "A",
@@ -148,5 +153,106 @@ const baseDeDados = [
         "lat": -15.93042,
         "lng": -48.294749,
         "obs": "Quadra da academia boa forma"
+    },
+    
+    // VILA PARAISO 1
+    {
+        "bairro": "Vila Paraíso 1",
+        "quadra": "1",
+        "cep": "72900730",
+        "lat": -15.944915,
+        "lng": -48.256032,
+        "obs": "Quadra lateral ao Colégio Salomão"
+    },
+    {
+        "bairro": "Vila Paraíso 1",
+        "quadra": "2",
+        "cep": "72900732",
+        "lat": -15.945366,
+        "lng": -48.256063,
+        "obs": "Próximo a pista de Skate"
+    },
+    {
+        "bairro": "Vila Paraíso 1",
+        "quadra": "3",
+        "cep": "72900734",
+        "lat": -15.944949,
+        "lng": -48.254881,
+        "obs": ""
+    },
+    {
+        "bairro": "Vila Paraíso 1",
+        "quadra": "4",
+        "cep": "72900736",
+        "lat": -15.945454,
+        "lng": -48.255014,
+        "obs": ""
+    },
+    {
+        "bairro": "Vila Paraíso 1",
+        "quadra": "5",
+        "cep": "72900738",
+        "lat": -15.945246,
+        "lng": -48.254048,
+        "obs": ""
+    },
+    {
+        "bairro": "Vila Paraíso 1",
+        "quadra": "6",
+        "cep": "72900740",
+        "lat": -15.945235,
+        "lng": -48.253497,
+        "obs": ""
+    },
+    {
+        "bairro": "Vila Paraíso 1",
+        "quadra": "7",
+        "cep": "72900742",
+        "lat": -15.945278,
+        "lng": -48.252944,
+        "obs": "Quadra do grupo espírita"
+    },
+    
+    // VILA PARAISO 2
+    {
+        "bairro": "Vila Paraíso 2",
+        "quadra": "A",
+        "cep": "72900670",
+        "lat": -15.943996,
+        "lng": -48.255936,
+        "obs": "Colégio Salomão"
+    },
+    {
+        "bairro": "Vila Paraíso 2",
+        "quadra": "B",
+        "cep": "72900672",
+        "lat": -15.944425,
+        "lng": -48.254901,
+        "obs": "Atrás do Colégio Salomão"
+    },
+    {
+        "bairro": "Vila Paraíso 2",
+        "quadra": "D",
+        "cep": "72900676",
+        "lat": -15.944388,
+        "lng": -48.254031,
+        "obs": "Rua adjacente ao Colégio Salomão"
+    },
+    {
+        "bairro": "Vila Paraíso 2",
+        "quadra": "E",
+        "cep": "72900678",
+        "lat": -15.944423,
+        "lng": -48.253475,
+        "obs": "Rua adjacente ao Colégio Salomão"
+    },
+    {
+        "bairro": "Vila Paraíso 2",
+        "quadra": "F",
+        "cep": "72900680",
+        "lat": -15.944466,
+        "lng": -48.252889,
+        "obs": "Rua adjacente ao Colégio Salomão"
     }
+    
 ];
