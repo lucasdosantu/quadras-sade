@@ -134,6 +134,8 @@ const baseDeDados = [
         "lng": -48.262569,
         "obs": "Quadra da barbearia Ruben"
     },
+    
+    // BEATRIZ %
     {
         "bairro": "Beatriz 1",
         "quadra": "44",
@@ -142,6 +144,8 @@ const baseDeDados = [
         "lng": -48.298531,
         "obs": "Quadra do mercado do baiano"
     },
+    
+    // VILA PARQUE
     {
         "bairro": "Vila parque",
         "quadra": "A",
@@ -151,7 +155,7 @@ const baseDeDados = [
         "obs": "Quadra da academia boa forma"
     },
     
-    //VILA PARAISO 1
+    // VILA PARAISO 1
     {
         "bairro": "Vila Paraíso 1",
         "quadra": "1",
@@ -438,4 +442,5 @@ const baseDeDados = [
         "lng": -48.293965,
         "obs": ""
     }
+
 ];
