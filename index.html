@@ -10,6 +10,27 @@
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
+  <div id="modal-aviso" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="modal-icon">📢</span>
+            <h2>Aviso Importante</h2>
+        </div>
+        <div class="modal-body">
+            <p>Seja bem-vindo ao Localizador de Quadras!</p>
+            <p>Você não verá essa tela novamente, apenas se eu adicionar alguma coisa nova ao sistema.</p>
+            <p>Você pode pesquisar quadras apenas digitando o número ou buscar diretamente pelo CEP (apenas números).</p>
+            <p><b>Ex:</b> <i>6 Vila Paraíso</i></p>
+            <p>Atualmente os bairros <b>Vila Esperança, Vila Paraíso 1 & 2 e Gomes Rabelo</b> estão completamente mapeados.</p>
+            <p>Se você conhece alguma quadra que ainda não está cadastrada, clique no + e clique sobre a quadra para me enviar a sugestão.</p>
+        </div>
+        <div class="modal-footer">
+            <button onclick="fecharAviso()" class="btn-fechar-modal">Entendi</button>
+        </div>
+    </div>
+</div>
+  
+  
     <div id="header">
         <div class="search-container">
             <input type="text" id="mainSearch" class="search-box" placeholder="Digite Quadra, CEP ou Bairro..." list="listaSugestoes">
@@ -49,6 +70,7 @@
     <script src="js/gps.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
     <script src="js/acoes.js"></script>
+    <script src="js/avisos.js"></script>
     <script src="js/busca.js"></script>
 
     <script>
