@@ -134,8 +134,6 @@ const baseDeDados = [
         "lng": -48.262569,
         "obs": "Quadra da barbearia Ruben"
     },
-    
-    // BEATRIZ 1
     {
         "bairro": "Beatriz 1",
         "quadra": "44",
@@ -144,8 +142,6 @@ const baseDeDados = [
         "lng": -48.298531,
         "obs": "Quadra do mercado do baiano"
     },
-    
-    // VILA PARQUE
     {
         "bairro": "Vila parque",
         "quadra": "A",
@@ -155,7 +151,7 @@ const baseDeDados = [
         "obs": "Quadra da academia boa forma"
     },
     
-    // VILA PARAISO 1
+    //VILA PARAISO 1
     {
         "bairro": "Vila Paraíso 1",
         "quadra": "1",
@@ -253,6 +249,193 @@ const baseDeDados = [
         "lat": -15.944466,
         "lng": -48.252889,
         "obs": "Rua adjacente ao Colégio Salomão"
-    }
+    },
     
+    // CONCEIÇÃO GOMES RABELO
+    {
+        "bairro": "Conceição Gomes Rabelo",
+        "quadra": "A",
+        "cep": "72900021",
+        "lat": -15.943777,
+        "lng": -48.276483,
+        "obs": "5ª rua abaixo do Fórum"
+    },
+    {
+        "bairro": "Conceição Gomes Rabelo",
+        "quadra": "B",
+        "cep": "72900023",
+        "lat": -15.943473,
+        "lng": -48.276846,
+        "obs": "5ª rua dos bombeiros"
+    },
+    {
+        "bairro": "Conceição Gomes Rabelo",
+        "quadra": "C1",
+        "cep": "72900017",
+        "lat": -15.943491,
+        "lng": -48.27543,
+        "obs": "5ª rua do fórum"
+    },
+    {
+        "bairro": "Conceição Gomes Rabelo",
+        "quadra": "C2",
+        "cep": "72900019",
+        "lat": -15.942999,
+        "lng": -48.276161,
+        "obs": "5ª rua dos bombeiros"
+    },
+    {
+        "bairro": "Conceição Gomes Rabelo",
+        "quadra": "D",
+        "cep": "71900015",
+        "lat": -15.942956,
+        "lng": -48.275014,
+        "obs": "4ª rua do fórum"
+    },
+    {
+        "bairro": "Conceição Gomes Rabelo",
+        "quadra": "E",
+        "cep": "729000013",
+        "lat": -15.942442,
+        "lng": -48.27577,
+        "obs": "4ª rua dos bombeiros"
+    },
+    {
+        "bairro": "Conceição Gomes Rabelo",
+        "quadra": "F",
+        "cep": "72900009",
+        "lat": -15.94255,
+        "lng": -48.274709,
+        "obs": "3ª rua do fórum"
+    },
+    {
+        "bairro": "Conceição Gomes Rabelo",
+        "quadra": "G",
+        "cep": "72900011",
+        "lat": -15.942038,
+        "lng": -48.275437,
+        "obs": "3ª rua dos bombeiros"
+    },
+    {
+        "bairro": "Conceição Gomes Rabelo",
+        "quadra": "H",
+        "cep": "72900007",
+        "lat": -15.94214,
+        "lng": -48.274343,
+        "obs": "2ª rua do fórum"
+    },
+    {
+        "bairro": "Conceição Gomes Rabelo",
+        "quadra": "I",
+        "cep": "72900005",
+        "lat": -15.94153,
+        "lng": -48.275126,
+        "obs": "2ª rua dos bombeiros"
+    },
+    {
+        "bairro": "Conceição Gomes Rabelo",
+        "quadra": "J",
+        "cep": "72900001",
+        "lat": -15.941611,
+        "lng": -48.27408,
+        "obs": "Quadra do posto de gasolina"
+    },
+    {
+        "bairro": "Conceição Gomes Rabelo",
+        "quadra": "K",
+        "cep": "72900003",
+        "lat": -15.941131,
+        "lng": -48.274804,
+        "obs": "Quadra ao lado do corpo de bombeiros"
+    },
+    
+    // VILA ESPERANÇA
+    {
+        "bairro": "Vila Esperança",
+        "quadra": "1",
+        "cep": "72902112",
+        "lat": -15.948121,
+        "lng": -48.29208,
+        "obs": "atrás da igreja assembléia de Deus"
+    },
+    {
+        "bairro": "Vila Esperança",
+        "quadra": "2",
+        "cep": "72902110",
+        "lat": -15.947763,
+        "lng": -48.292541,
+        "obs": "3ª quadra ao lado das escolas"
+    },
+    {
+        "bairro": "Vila Esperança",
+        "quadra": "3",
+        "cep": "72902114",
+        "lat": -15.947254,
+        "lng": -48.292735,
+        "obs": "quadra do supermercado"
+    },
+    {
+        "bairro": "Vila Esperança",
+        "quadra": "4",
+        "cep": "72902116",
+        "lat": -15.946745,
+        "lng": -48.292843,
+        "obs": "ao lado das escolas"
+    },
+    {
+        "bairro": "Vila Esperança",
+        "quadra": "5",
+        "cep": "72902118",
+        "lat": -15.946222,
+        "lng": -48.293094,
+        "obs": "quadra das escolas"
+    },
+    {
+        "bairro": "Vila Esperança",
+        "quadra": "6",
+        "cep": "72902120",
+        "lat": -15.945659,
+        "lng": -48.293191,
+        "obs": "quadra ao lado das escolas"
+    },
+    {
+        "bairro": "Vila Esperança",
+        "quadra": "7",
+        "cep": "72902122",
+        "lat": -15.94515,
+        "lng": -48.293329,
+        "obs": ""
+    },
+    {
+        "bairro": "Vila Esperança",
+        "quadra": "8",
+        "cep": "72902124",
+        "lat": -15.944626,
+        "lng": -48.293598,
+        "obs": ""
+    },
+    {
+        "bairro": "Vila Esperança",
+        "quadra": "9",
+        "cep": "72902126",
+        "lat": -15.944082,
+        "lng": -48.293746,
+        "obs": ""
+    },
+    {
+        "bairro": "Vila Esperança",
+        "quadra": "10",
+        "cep": "72902128",
+        "lat": -15.943525,
+        "lng": -48.293898,
+        "obs": ""
+    },
+    {
+        "bairro": "Vila Esperança",
+        "quadra": "11",
+        "cep": "72902130",
+        "lat": -15.943036,
+        "lng": -48.293965,
+        "obs": ""
+    }
 ];
