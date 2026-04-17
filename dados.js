@@ -64,6 +64,14 @@ const baseDeDados = [
     },
     {
         "bairro": "Centro",
+        "quadra": "35",
+        "cep": "72900294",
+        "lat": -15.947272,
+        "lng": -48.259500,
+        "obs": "Quadra ao lado do José de Assis"
+    },
+    {
+        "bairro": "Centro",
         "quadra": "20",
         "cep": "72900370",
         "lat": -15.94333,
@@ -441,6 +449,15 @@ const baseDeDados = [
         "lat": -15.943036,
         "lng": -48.293965,
         "obs": ""
-    }
+    },
 
+    // MONTES CLAROS 2
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "17",
+        "cep": "72906786",
+        "lat": -15.957442,
+        "lng": -48.258766,
+        "obs": "Avenida das palmeiras"
+    }
 ];
