@@ -142,7 +142,7 @@ const baseDeDados = [
         "lng": -48.262569,
         "obs": "Quadra da barbearia Ruben"
     },
-    
+
     // BEATRIZ %
     {
         "bairro": "Beatriz 1",
@@ -152,7 +152,7 @@ const baseDeDados = [
         "lng": -48.298531,
         "obs": "Quadra do mercado do baiano"
     },
-    
+
     // VILA PARQUE
     {
         "bairro": "Vila parque",
@@ -162,7 +162,7 @@ const baseDeDados = [
         "lng": -48.294749,
         "obs": "Quadra da academia boa forma"
     },
-    
+
     // VILA PARAISO 1
     {
         "bairro": "Vila Paraíso 1",
@@ -220,7 +220,7 @@ const baseDeDados = [
         "lng": -48.252944,
         "obs": "Quadra do grupo espírita"
     },
-    
+
     // VILA PARAISO 2
     {
         "bairro": "Vila Paraíso 2",
@@ -342,7 +342,7 @@ const baseDeDados = [
         "lng": -48.255744,
         "obs": ""
     },
-    
+
     // VILA PARAÍSO 3
      {
         "bairro": "Vila Paraíso 3",
@@ -368,7 +368,7 @@ const baseDeDados = [
         "lng": -48.255255,
         "obs": ""
     },
-    
+
     // VILA SÃO LUIZ 1
      {
         "bairro": "Vila São Luiz 1",
@@ -442,7 +442,7 @@ const baseDeDados = [
         "lng": -48.259375,
         "obs": ""
     },
-    
+
     // VILA SÃO LUIZ 2
     {
         "bairro": "Vila São Luiz 2",
@@ -468,7 +468,7 @@ const baseDeDados = [
         "lng": -48.256009,
         "obs": ""
     },
-    
+
     // CONCEIÇÃO GOMES RABELO
     {
         "bairro": "Conceição Gomes Rabelo",
@@ -566,7 +566,7 @@ const baseDeDados = [
         "lng": -48.274804,
         "obs": "Quadra ao lado do corpo de bombeiros"
     },
-    
+
     // VILA ESPERANÇA
     {
         "bairro": "Vila Esperança",
@@ -759,7 +759,7 @@ const baseDeDados = [
         "quadra": "13",
         "cep": "72906826",
         "lat": -15.959133,
-        "lng": -15.260378,
+        "lng": -48.260378,
         "obs": ""
     },
     {
@@ -887,7 +887,7 @@ const baseDeDados = [
         "quadra": "29",
         "cep": "72906804",
         "lat": -15.960606,
-        "lng": -45.257377,
+        "lng": -48.257377,
         "obs": "Avenida das Palmeiras"
     },
     {
