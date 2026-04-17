@@ -142,7 +142,7 @@ const baseDeDados = [
         "lng": -48.262569,
         "obs": "Quadra da barbearia Ruben"
     },
-    
+
     // BEATRIZ %
     {
         "bairro": "Beatriz 1",
@@ -152,7 +152,7 @@ const baseDeDados = [
         "lng": -48.298531,
         "obs": "Quadra do mercado do baiano"
     },
-    
+
     // VILA PARQUE
     {
         "bairro": "Vila parque",
@@ -162,7 +162,7 @@ const baseDeDados = [
         "lng": -48.294749,
         "obs": "Quadra da academia boa forma"
     },
-    
+
     // VILA PARAISO 1
     {
         "bairro": "Vila Paraíso 1",
@@ -220,7 +220,7 @@ const baseDeDados = [
         "lng": -48.252944,
         "obs": "Quadra do grupo espírita"
     },
-    
+
     // VILA PARAISO 2
     {
         "bairro": "Vila Paraíso 2",
@@ -262,7 +262,213 @@ const baseDeDados = [
         "lng": -48.252889,
         "obs": "Rua adjacente ao Colégio Salomão"
     },
-    
+    {
+        "bairro": "Vila Paraíso 2",
+        "quadra": "8",
+        "cep": "72900686",
+        "lat": -15.945907,
+        "lng": 256063,
+        "obs": ""
+    },
+    {
+        "bairro": "Vila Paraíso 2",
+        "quadra": "10",
+        "cep": "72900684",
+        "lat": -15.945944,
+        "lng": -48.255077,
+        "obs": ""
+    },
+    {
+        "bairro": "Vila Paraíso 2",
+        "quadra": "12",
+        "cep": "72900682",
+        "lat": -15.946097,
+        "lng": -48.253999,
+        "obs": ""
+    },
+    {
+        "bairro": "Vila Paraíso 2",
+        "quadra": "9",
+        "cep": "72900688",
+        "lat": -15.946552,
+        "lng": -48.256127,
+        "obs": ""
+    },
+    {
+        "bairro": "Vila Paraíso 2",
+        "quadra": "11",
+        "cep": "72900690",
+        "lat": -15.946637,
+        "lng": -48.254918,
+        "obs": ""
+    },
+    {
+        "bairro": "Vila Paraíso 2",
+        "quadra": "1",
+        "cep": "72900692",
+        "lat": -15.946963,
+        "lng": -48.25638,
+        "obs": "Área Especial 1"
+    },
+    {
+        "bairro": "Vila Paraíso 2",
+        "quadra": "2",
+        "cep": "72900694",
+        "lat": -15.946981,
+        "lng": -48.255956,
+        "obs": "Área Especial 2"
+    },
+    {
+        "bairro": "Vila Paraíso 2",
+        "quadra": "3",
+        "cep": "72900696",
+        "lat": -15.947066,
+        "lng": -48.255417,
+        "obs": "Área Especial 3"
+    },
+    {
+        "bairro": "Vila Paraíso 2",
+        "quadra": "4",
+        "cep": "72900698",
+        "lat": -15.947101,
+        "lng": -48.254992,
+        "obs": "Área Especial 4"
+    },
+    {
+        "bairro": "Vila Paraíso 2",
+        "quadra": "13A",
+        "cep": "72900700",
+        "lat": -15.947508,
+        "lng": -48.255744,
+        "obs": ""
+    },
+
+    // VILA PARAÍSO 3
+     {
+        "bairro": "Vila Paraíso 3",
+        "quadra": "B",
+        "cep": "72900773",
+        "lat": -15.948402,
+        "lng": -48.255816,
+        "obs": ""
+    },
+    {
+        "bairro": "Vila Paraíso 3",
+        "quadra": "C",
+        "cep": "72900776",
+        "lat": -15.948975,
+        "lng": -48.255823,
+        "obs": ""
+    },
+    {
+        "bairro": "Vila Paraíso 3",
+        "quadra": "D",
+        "cep": "72900779",
+        "lat": -15.948027,
+        "lng": -48.255255,
+        "obs": ""
+    },
+
+    // VILA SÃO LUIZ 1
+     {
+        "bairro": "Vila São Luiz 1",
+        "quadra": "1",
+        "cep": "72900866",
+        "lat": -15.951303,
+        "lng": -48.258396,
+        "obs": ""
+    },
+    {
+        "bairro": "Vila São Luiz 1",
+        "quadra": "2",
+        "cep": "72900864",
+        "lat": -15.951623,
+        "lng": -48.257788,
+        "obs": ""
+    },
+    {
+        "bairro": "Vila São Luiz 1",
+        "quadra": "3",
+        "cep": "72900862",
+        "lat": -15.952013,
+        "lng": -48.257277,
+        "obs": ""
+    },
+    {
+        "bairro": "Vila São Luiz 1",
+        "quadra": "4",
+        "cep": "72900860",
+        "lat": -15.952353,
+        "lng": -48.256623,
+        "obs": ""
+    },
+    {
+        "bairro": "Vila São Luiz 1",
+        "quadra": "6",
+        "cep": "72900876",
+        "lat": -15.953977,
+        "lng": -48.258137,
+        "obs": ""
+    },
+    {
+        "bairro": "Vila São Luiz 1",
+        "quadra": "5",
+        "cep": "72900872",
+        "lat": -15.953291,
+        "lng": -48.257965,
+        "obs": ""
+    },
+    {
+        "bairro": "Vila São Luiz 1",
+        "quadra": "7",
+        "cep": "72900874",
+        "lat": -15.95314,
+        "lng": -48.25965,
+        "obs": ""
+    },
+    {
+        "bairro": "Vila São Luiz 1",
+        "quadra": "8",
+        "cep": "72900870",
+        "lat": -15.952554,
+        "lng": -48.259519,
+        "obs": ""
+    },
+    {
+        "bairro": "Vila São Luiz 1",
+        "quadra": "9",
+        "cep": "782900868",
+        "lat": -15.95177,
+        "lng": -48.259375,
+        "obs": ""
+    },
+
+    // VILA SÃO LUIZ 2
+    {
+        "bairro": "Vila São Luiz 2",
+        "quadra": "1",
+        "cep": "72900810",
+        "lat": -15.949804,
+        "lng": -48.25714,
+        "obs": ""
+    },
+    {
+        "bairro": "Vila São Luiz 2",
+        "quadra": "2",
+        "cep": "72900803",
+        "lat": -15.950543,
+        "lng": -48.256981,
+        "obs": ""
+    },
+    {
+        "bairro": "Vila São Luiz 2",
+        "quadra": "3",
+        "cep": "72900806",
+        "lat": -15.950378,
+        "lng": -48.256009,
+        "obs": ""
+    },
+
     // CONCEIÇÃO GOMES RABELO
     {
         "bairro": "Conceição Gomes Rabelo",
@@ -360,7 +566,7 @@ const baseDeDados = [
         "lng": -48.274804,
         "obs": "Quadra ao lado do corpo de bombeiros"
     },
-    
+
     // VILA ESPERANÇA
     {
         "bairro": "Vila Esperança",
@@ -454,10 +660,242 @@ const baseDeDados = [
     // MONTES CLAROS 2
     {
         "bairro": "Montes Claros 2",
+        "quadra": "1",
+        "cep": "72906770",
+        "lat": -15.955607,
+        "lng": -48.260748,
+        "obs": "Avenida das Palmeiras"
+    },
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "2",
+        "cep": "72906716",
+        "lat": -15.955148,
+        "lng": -48.260599,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "3",
+        "cep": "72906720",
+        "lat": -15.954641,
+        "lng": -48.260221,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "4",
+        "cep": "72906776",
+        "lat": -15.954832,
+        "lng": -48.258433,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "5",
+        "cep": "72906778",
+        "lat": -15.955204,
+        "lng": -48.258824,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "6",
+        "cep": "72906780",
+        "lat": -15.955593,
+        "lng": -48.259162,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "7",
+        "cep": "72906782",
+        "lat": -15.955998,
+        "lng": -48.259523,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "8",
+        "cep": "72906784",
+        "lat": -15.956356,
+        "lng": -48.259834,
+        "obs": "Avenida das Palmeiras"
+    },
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "9",
+        "cep": "72906810",
+        "lat": -15.956718,
+        "lng": -48.26057,
+        "obs": "Avenida das Palmeiras"
+    },
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "10",
+        "cep": "72906812",
+        "lat": -15.957293,
+        "lng": -48.260841,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "11",
+        "cep": "72906822",
+        "lat": -15.957705,
+        "lng": -48.261093,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "12",
+        "cep": "72906824",
+        "lat": -15.958209,
+        "lng": -48.261374,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "13",
+        "cep": "72906826",
+        "lat": -15.959133,
+        "lng": -48.260378,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "14",
+        "cep": "72906820",
+        "lat": -15.958715,
+        "lng": -48.260095,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "15",
+        "cep": "72906814",
+        "lat": -15.958302,
+        "lng": -48.25967,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "16",
+        "cep": "72906808",
+        "lat": -15.957847,
+        "lng": -48.259263,
+        "obs": "Avenida das Palmeiras"
+    },
+    {
+        "bairro": "Montes Claros 2",
         "quadra": "17",
         "cep": "72906786",
         "lat": -15.957442,
         "lng": -48.258766,
         "obs": "Avenida das palmeiras"
+    },
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "18",
+        "cep": "72906788",
+        "lat": -15.95678,
+        "lng": -48.258154,
+        "obs": "CEPI"
+    },
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "19",
+        "cep": "72906790",
+        "lat": -15.956206,
+        "lng": -48.25772,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "20",
+        "cep": "72906792",
+        "lat": -15.955787,
+        "lng": -48.257282,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "21",
+        "cep": "72906794",
+        "lat": -15.956921,
+        "lng": -48.256581,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "22",
+        "cep": "72906796",
+        "lat": -15.957606,
+        "lng": -48.256927,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "23",
+        "cep": "72906798",
+        "lat": -15.95805,
+        "lng": -48.257255,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "24",
+        "cep": "72906800",
+        "lat": -15.958468,
+        "lng": -48.257568,
+        "obs": "Avenida das Palmeiras"
+    },
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "25",
+        "cep": "72906806",
+        "lat": -15.958873,
+        "lng": -48.258093,
+        "obs": "Avenida das Palmeiras"
+    },
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "26",
+        "cep": "72906816",
+        "lat": -15.95925,
+        "lng": -48.258466,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "27",
+        "cep": "72906818",
+        "lat": -15.959719,
+        "lng": -48.258824,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "28",
+        "cep": "72906828",
+        "lat": -15.960078,
+        "lng": -48.259236,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "29",
+        "cep": "72906804",
+        "lat": -15.960606,
+        "lng": -48.257377,
+        "obs": "Avenida das Palmeiras"
+    },
+    {
+        "bairro": "Montes Claros 2",
+        "quadra": "30",
+        "cep": "72906802",
+        "lat": -15.95856,
+        "lng": -48.255907,
+        "obs": "Avenida das Palmeiras"
     }
 ];
