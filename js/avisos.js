@@ -1,4 +1,4 @@
-const VERSAO_AVISO = "1.0"; 
+const VERSAO_AVISO = "1.1"; 
 
 function verificarAviso() {
     const versaoLida = localStorage.getItem('versaoAvisoLido');
