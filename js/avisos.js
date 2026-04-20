@@ -1,11 +1,11 @@
-const VERSAO_AVISO = "1.1"; 
-
 function verificarAviso() {
+    const versaoAtual = (typeof VERSAO_SISTEMA !== 'undefined') ? VERSAO_SISTEMA : '1.0.0';
+
     const versaoLida = localStorage.getItem('versaoAvisoLido');
     const modal = document.getElementById('modal-aviso');
-    
+
     if (modal) {
-        if (versaoLida === VERSAO_AVISO) {
+        if (versaoLida === versaoAtual) {
             modal.style.display = 'none';
         } else {
             modal.style.display = 'flex';
@@ -15,9 +15,11 @@ function verificarAviso() {
 
 function fecharAviso() {
     const modal = document.getElementById('modal-aviso');
+    const versaoAtual = (typeof VERSAO_SISTEMA !== 'undefined') ? VERSAO_SISTEMA : '1.0.0';
+
     if (modal) {
         modal.style.display = 'none';
-        localStorage.setItem('versaoAvisoLido', VERSAO_AVISO);
+        localStorage.setItem('versaoAvisoLido', versaoAtual);
     }
 }
 
