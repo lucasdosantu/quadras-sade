@@ -2,91 +2,127 @@
 <!-- Licensed under CC BY-NC 4.0: https://creativecommons.org/licenses/by-nc/4.0/ -->
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SADE - Localizador de Quadras</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="css/estilo-mapa.css">
-    <link rel="manifest" href="manifest.json">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>SADE - Localizador de Quadras</title>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="css/styles.css">
+<link rel="manifest" href="manifest.json">
 </head>
 <body>
-  <div id="modal-aviso" class="modal-overlay">
-    <div class="modal-content">
-        <div class="modal-header">
-            <span class="modal-icon">📢</span>
-            <h2>Aviso Importante</h2>
-        </div>
-        <div class="modal-body">
-            <p>Seja bem-vindo ao Localizador de Quadras!</p>
-            <p>NOVOS BAIRROS ADICIONADOS!</p>
-            <p>Você pode pesquisar quadras apenas digitando o número ou buscar diretamente pelo CEP (apenas números).</p>
-            <p><b>Ex:</b> <i>6 Vila Paraíso</i></p>
-            <p>Atualmente os bairros <b>Vila Esperança, Vila Paraíso 1, 2 & 3, Gomes Rabelo, <i>Vila São Luiz 1 & 2 e Montes Claros 2</i></b> estão completamente mapeados.</p>
-            <p>Se você conhece alguma quadra que ainda não está cadastrada, clique no + e clique sobre a quadra para me enviar a sugestão.</p>
-        </div>
-        <div class="modal-footer">
-            <button onclick="fecharAviso()" class="btn-fechar-modal">Entendi</button>
-        </div>
-    </div>
+<div id="modal-aviso" class="modal-overlay">
+<div class="modal-content">
+<div class="modal-header">
+<span class="modal-icon">📢</span><h2>Aviso Importante</h2>
 </div>
-  
-  
-    <div id="header">
-        <div class="search-container">
-            <input type="text" id="mainSearch" class="search-box" placeholder="Digite Quadra, CEP ou Bairro..." list="listaSugestoes">
-            <span id="clearSearch" class="btn-clear">&times;</span>
-            <datalist id="listaSugestoes"></datalist>
-        </div>
-    </div>
+<div class="modal-body">
+<p>
+Seja bem-vindo ao Localizador de Quadras!
+</p>
+<p>
+MODO ESCURO HABILITADO! Experimente no menu lateral.
+</p>
+<p>
+Você pode pesquisar quadras apenas digitando o número ou buscar diretamente pelo CEP (apenas números).
+</p>
+<p>
+<b>Ex:</b> <i>6 Vila Paraíso</i>
+</p>
+<p>
+Atualmente os bairros <b>Vila Esperança, Vila Paraíso 1, 2 & 3, Gomes Rabelo, <i>Vila São Luiz 1 & 2 e Montes Claros 2</i></b> estão completamente mapeados.
+</p>
+<p>
+Se você conhece alguma quadra que ainda não está cadastrada, clique no + e clique sobre a quadra para me enviar a sugestão.
+</p>
+</div>
+<div class="modal-footer">
+<button onclick="fecharAviso()" class="btn-fechar-modal">Entendi</button>
+</div>
+</div>
+</div>
+<div id="header">
+<button class="menu-hamburger" onclick="toggleMenu()">☰</button>
+<div class="search-container">
+<input type="text" id="mainSearch" class="search-box" placeholder="Busque Quadra ou CEP..." list="listaSugestoes">
+<span id="clearSearch" class="btn-clear">&times;</span>
+<datalist id="listaSugestoes"></datalist>
+</div>
+</div>
+<div id="menu-lateral">
+<div class="menu-header">
+<h3>MENU</h3><button class="btn-close-menu" onclick="toggleMenu()">×</button>
+</div>
+<div class="menu-content">
+<label class="menu-item-toggle" for="checkNoturno">
+<span>🌓 Modo Noturno</span>
+<div class="switch">
+<input type="checkbox" id="checkNoturno" onclick="alternarTema()">
+<span class="slider round"></span>
+</div>
+</label>
 
-    <div id="map">
+<label class="menu-item-toggle" for="checkBairros">
+<span>🗺️ Limites de Bairros</span>
+<div class="switch">
+<input type="checkbox" id="checkBairros" onclick="toggleLimitesBairros()">
+<span class="slider round"></span>
+</div>
+</label>
 
-      <div id="painel-rota" style="display: none; position:relative; top:10px; left:10px; z-index:2000; background:white; width:250px; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.3); transition: all 0.3s ease;">
-    <div onclick="alternarMinimizar()" style="background:#34A853; color:white; padding:12px; border-radius:10px 10px 0 0; font-weight:bold; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
-        <span>📍 Minha Rota (<span id="contador-rota">0</span>)</span>
-        <span id="icone-minimizar">▼</span>
-    </div>
-
-    <div id="conteudo-rota">
-        <ul id="lista-rota-ui" style="list-style:none; padding:10px; margin:0; max-height:200px; overflow-y:auto; border-bottom:1px solid #eee;"></ul>
-        <div style="padding:10px;">
-            <button onclick="gerarLinkGoogleMaps()" style="width:100%; background:#4285F4; color:white; padding:12px; border:none; border-radius:5px; font-weight:bold; cursor:pointer;">ABRIR NO GOOGLE MAPS</button>
-        </div>
-    </div>
+<button onclick="limparRotaTotal(); toggleMenu()">🗑️ Limpar Rota Atual</button>
+<hr>
+<button onclick="toggleSuggestMode(); toggleMenu()">➕ Sugerir Nova Quadra</button>
+<button onclick="reportarErro(); toggleMenu()">⚠️ Reportar Erro no Mapa</button>
+<hr>
+<button onclick="abrirGuia(); toggleMenu()">📖 Guia de Uso</button>
+<button onclick="location.reload(true)">🔄 Verificar Atualizações</button>
 </div>
 
-        <div class="controls-right">
-            <button class="btn-float btn-sat" onclick="event.stopPropagation(); toggleSatelite()">🛰️</button>
-            <button class="btn-float btn-suggest" id="btnSuggest" onclick="event.stopPropagation(); toggleSuggestMode()">➕</button>
-            <button class="btn-float" onclick="event.stopPropagation(); minhaLocalizacao()">📍</button>
-        </div>
-    </div>
-
-    <div id="footer">&copy; <span id="anoAtual"></span> SADE - Localizador de Quadras | <span id="totalQuadras">0</span> mapeadas.</div>
-
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="js/quadras-db.js"></script>
-    <script src="js/config.js"></script>
-    <script src="js/gps.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
-    <script src="js/acoes.js"></script>
-    <script src="js/avisos.js"></script>
-    <script src="js/busca.js"></script>
-
-    <script>
-        window.onload = () => {
-            if (typeof baseDeDados !== 'undefined') {
-                document.getElementById('totalQuadras').innerText = baseDeDados.length;
-            }
-            document.getElementById('anoAtual').innerText = new Date().getFullYear();
-            minhaLocalizacao();
-        };
-
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js')
-              .then(() => console.log("SADE: Offline pronto."))
-              .catch(err => console.error("SADE: Erro no SW", err));
-        }
-    </script>
+<div class="menu-footer">
+<p id="versao-exibida"></p>
+</div>
+</div>
+<div id="overlay-menu" onclick="toggleMenu()"></div>
+<div id="map">
+<div id="painel-rota">
+<div id="cabecalho-rota" onclick="alternarMinimizar()">
+<span>📍 Minha Rota (<span id="contador-rota">0</span>)</span><span id="icone-minimizar">▼</span>
+</div>
+<div id="conteudo-rota">
+<ul id="lista-rota-ui"></ul>
+<div style="padding:10px;">
+<button id="rota-btn" onclick="gerarLinkGoogleMaps()">ABRIR NO GOOGLE MAPS</button>
+</div>
+</div>
+</div>
+<div class="controls-right">
+<button class="btn-float btn-sat" onclick="event.stopPropagation(); toggleSatelite()">🛰️</button>
+<button class="btn-float btn-suggest" id="btnSuggest" onclick="event.stopPropagation(); toggleSuggestMode()">➕</button>
+<button class="btn-float" onclick="event.stopPropagation(); minhaLocalizacao()">📍</button>
+</div>
+</div>
+<div id="footer">
+&copy; <span id="anoAtual"></span> SADE - Localizador de Quadras | <span id="totalQuadras">0</span> mapeadas.
+</div>
+<script src="js/versao.js"></script>
+<script src="js/quadras-db.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/perimetros.js"></script>
+<script src="js/config.js"></script>
+<script src="js/gps.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+<script src="js/acoes.js"></script>
+<script src="js/avisos.js"></script>
+<script src="js/busca.js"></script>
+<script>
+window.onload = () => {
+if (typeof baseDeDados !== 'undefined') {
+document.getElementById('totalQuadras').innerText = baseDeDados.length;
+} document.getElementById('anoAtual').innerText = new Date().getFullYear(); minhaLocalizacao(); verificarHorarioNoturno();
+};
+if ('serviceWorker' in navigator) {
+navigator.serviceWorker.register('sw.js').then(() => console.log("SADE: Offline pronto.")).catch(err => console.error("SADE: Erro no SW", err));
+}
+</script>
 </body>
 </html>
