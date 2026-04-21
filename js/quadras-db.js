@@ -657,6 +657,160 @@ const baseDeDados = [
 		"obs": ""
 	},
 
+	// MONTES CLAROS
+	{
+		"bairro": "Montes Claros 1",
+		"quadra": "30",
+		"cep": "72906668",
+		"lat": -15.957389,
+		"lng": -48.26637,
+		"obs": "Asilo"
+	},
+	{
+		"bairro": "Montes Claros 1",
+		"quadra": "29",
+		"cep": "72906670",
+		"lat": -15.956575,
+		"lng": -48.266312,
+		"obs": "CMEI Ângela Abdon"
+	},
+	{
+		"bairro": "Montes Claros 1",
+		"quadra": "28",
+		"cep": "72906674",
+		"lat": -15.95599,
+		"lng": -48.266374,
+		"obs": ""
+	},
+	{
+		"bairro": "Montes Claros 1",
+		"quadra": "27",
+		"cep": "72906676",
+		"lat": -15.955529,
+		"lng": -48.266221,
+		"obs": ""
+	},
+    {
+        "bairro": "Montes Claros 1",
+        "quadra": "26",
+        "cep": "72906678",
+        "lat": -15.955529,
+        "lng": -48.266221,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 1",
+        "quadra": "25",
+        "cep": "72906680",
+        "lat": -15.95511,
+        "lng": -48.266197,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 1",
+        "quadra": "24",
+        "cep": "72906682",
+        "lat": -15.954548,
+        "lng": -48.266113,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 1",
+        "quadra": "23",
+        "cep": "72906684",
+        "lat": -15.953611,
+        "lng": -48.266391,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 1",
+        "quadra": "22",
+        "cep": "72906686",
+        "lat": -15.953611,
+        "lng": -48.265507,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 1",
+        "quadra": "17",
+        "cep": "72906698",
+        "lat": -15.955703,
+        "lng": -48.265015,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 1",
+        "quadra": "16",
+        "cep": "72906696",
+        "lat": -15.955814,
+        "lng": -48.264288,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 1",
+        "quadra": "15",
+        "cep": "72906692",
+        "lat": -15.954859,
+        "lng": -48.264862,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 1",
+        "quadra": "14",
+        "cep": "72906690",
+        "lat": -15.954275,
+        "lng": -48.264822,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 1",
+        "quadra": "13",
+        "cep": "72906694",
+        "lat": -15.954659,
+        "lng": -48.264119,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 1",
+        "quadra": "12",
+        "cep": "72906688",
+        "lat": -15.953694,
+        "lng": -48.264049,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 1",
+        "quadra": "18",
+        "cep": "72906700",
+        "lat": -15.956714,
+        "lng": -48.264238,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 1",
+        "quadra": "4",
+        "cep": "72906712",
+        "lat": -15.956285,
+        "lng": -48.2635,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 1",
+        "quadra": "5",
+        "cep": "72906714",
+        "lat": -15.95617,
+        "lng": -48.262786,
+        "obs": ""
+    },
+    {
+        "bairro": "Montes Claros 1",
+        "quadra": "2",
+        "cep": "72906716",
+        "lat": -15.955202,
+        "lng": -48.263133,
+        "obs": ""
+    },
+
 	// MONTES CLAROS 2
 	{
 		"bairro": "Montes Claros 2",
@@ -897,4 +1051,198 @@ const baseDeDados = [
 		"lat": -15.95856,
 		"lng": -48.255907,
 		"obs": "Avenida das Palmeiras"
+	},
+
+	// PARQUE 11
+	{
+		"bairro": "Parque 11",
+		"quadra": "41",
+		"cep": "72906454",
+		"lat": -15.953387,
+		"lng": -48.271375,
+		"obs": ""
+	},
+	{
+		"bairro": "Parque 11",
+		"quadra": "43",
+		"cep": "72906452",
+		"lat": -15.954023,
+		"lng": -48.272248,
+		"obs": ""
+	},
+	{
+		"bairro": "Parque 11",
+		"quadra": "42",
+		"cep": "72906456",
+		"lat": -15.954319,
+		"lng": -48.270749,
+		"obs": ""
+	},
+	{
+		"bairro": "Parque 11",
+		"quadra": "44",
+		"cep": "72906458",
+		"lat": -15.95466,
+		"lng": -48.271706,
+		"obs": ""
+	},
+	{
+		"bairro": "Parque 11",
+		"quadra": "45",
+		"cep": "72906450",
+		"lat": -15.954575,
+		"lng": -48.272771,
+		"obs": ""
+	},
+	{
+		"bairro": "Parque 11",
+		"quadra": "46",
+		"cep": "72906448",
+		"lat": -15.954792,
+		"lng": -48.273356,
+		"obs": ""
+	},
+	{
+		"bairro": "Parque 11",
+		"quadra": "47",
+		"cep": "72906436",
+		"lat": -15.954635,
+		"lng": -48.274399,
+		"obs": ""
+	},
+	{
+		"bairro": "Parque 11",
+		"quadra": "48",
+		"cep": "72906438",
+		"lat": -15.955255,
+		"lng": -48.274394,
+		"obs": ""
+	},
+	{
+		"bairro": "Parque 11",
+		"quadra": "50",
+		"cep": "72906434",
+		"lat": -15.955191,
+		"lng": -48.275322,
+		"obs": ""
+	},
+	{
+		"bairro": "Parque 11",
+		"quadra": "51",
+		"cep": "72906432",
+		"lat": -15.955392,
+		"lng": -48.275938,
+		"obs": ""
+	},
+	{
+		"bairro": "Parque 11",
+		"quadra": "49",
+		"cep": "72906430",
+		"lat": -15.953701,
+		"lng": -48.274193,
+		"obs": ""
+	},
+	{
+		"bairro": "Parque 11",
+		"quadra": "52",
+		"cep": "72906464",
+		"lat": -15.954897,
+		"lng": -48.270025,
+		"obs": ""
+	},
+	{
+		"bairro": "Parque 11",
+		"quadra": "53",
+		"cep": "72906466",
+		"lat": -15.955479,
+		"lng": -48.270011,
+		"obs": ""
+	},
+	{
+		"bairro": "Parque 11",
+		"quadra": "54",
+		"cep": "72906462",
+		"lat": -15.955488,
+		"lng": -48.271113,
+		"obs": ""
+	},
+	{
+		"bairro": "Parque 11",
+		"quadra": "55",
+		"cep": "72906460",
+		"lat": -15.955527,
+		"lng": -48.271751,
+		"obs": ""
+	},
+	{
+		"bairro": "Parque 11",
+		"quadra": "56",
+		"cep": "72906446",
+		"lat": -15.955604,
+		"lng": -48.272805,
+		"obs": ""
+	},
+	{
+		"bairro": "Parque 11",
+		"quadra": "57",
+		"cep": "72906444",
+		"lat": -15.956139,
+		"lng": -48.272575,
+		"obs": ""
+	},
+	{
+		"bairro": "Parque 11",
+		"quadra": "58",
+		"cep": "72906442",
+		"lat": -15.956098,
+		"lng": -48.273636,
+		"obs": ""
+	},
+	{
+		"bairro": "Parque 11",
+		"quadra": "59",
+		"cep": "72906440",
+		"lat": -15.956319,
+		"lng": -48.274245,
+		"obs": ""
+	},
+	{
+		"bairro": "Parque 11",
+		"quadra": "60",
+		"cep": "72906428",
+		"lat": -15.956275,
+		"lng": -48.275383,
+		"obs": ""
+	},
+	{
+		"bairro": "Parque 11",
+		"quadra": "61",
+		"cep": "72906426",
+		"lat": -15.956936,
+		"lng": -48.275126,
+		"obs": ""
+	},
+	{
+		"bairro": "Parque 11",
+		"quadra": "62",
+		"cep": "72906424",
+		"lat": -15.956944,
+		"lng": -48.27633,
+		"obs": ""
+	},
+	{
+		"bairro": "Parque 11",
+		"quadra": "63",
+		"cep": "72906422",
+		"lat": -15.957352,
+		"lng": -48.276867,
+		"obs": ""
+	},
+	{
+		"bairro": "Parque 11",
+		"quadra": "64",
+		"cep": "72906420",
+		"lat": -15.957557,
+		"lng": -48.277812,
+		"obs": ""
 	}];
