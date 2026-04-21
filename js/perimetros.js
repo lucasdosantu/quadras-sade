@@ -1,10 +1,18 @@
+const cores = {
+	azul: "#3498db",
+	verde: "#27ae60",
+	laranja: "#e67e22",
+	roxo: "#9b59b6",
+	amarelo: "#f1c40f"
+};
+
 const perimetrosBairros = {
 	"type": "FeatureCollection",
 	"features": [{
 		"type": "Feature",
 		"properties": {
 			"nome": "Conceição Gomes Rabelo",
-			"cor": "#9b59b6"
+			"cor": cores.roxo
 		},
 		"geometry": {
 			"type": "Polygon",
@@ -30,7 +38,7 @@ const perimetrosBairros = {
 			"type": "Feature",
 			"properties": {
 				"nome": "Vila Paraíso 1",
-				"cor": "#33C1FF"
+				"cor": cores.roxo
 			},
 			"geometry": {
 				"type": "Polygon",
@@ -52,7 +60,7 @@ const perimetrosBairros = {
 			"type": "Feature",
 			"properties": {
 				"nome": "Vila Paraíso 2 (Norte)",
-				"cor": "#e74c3c"
+				"cor": cores.laranja
 			},
 			"geometry": {
 				"type": "Polygon",
@@ -82,7 +90,7 @@ const perimetrosBairros = {
 			"type": "Feature",
 			"properties": {
 				"nome": "Vila Paraíso 2 (Sul)",
-				"cor": "#e74c3c"
+				"cor": cores.laranja
 			},
 			"geometry": {
 				"type": "Polygon",
@@ -110,7 +118,7 @@ const perimetrosBairros = {
 			"type": "Feature",
 			"properties": {
 				"nome": "Vila Esperança",
-				"cor": "#3498db"
+				"cor": cores.verde
 			},
 			"geometry": {
 				"type": "Polygon",
@@ -136,7 +144,7 @@ const perimetrosBairros = {
 			"type": "Feature",
 			"properties": {
 				"nome": "Vila Paraíso 3",
-				"cor": "#98b36a"
+				"cor": cores.azul
 			},
 			"geometry": {
 				"type": "Polygon",
@@ -164,7 +172,7 @@ const perimetrosBairros = {
 			"type": "Feature",
 			"properties": {
 				"nome": "Vila São Luiz 2",
-				"cor": "#e74c3c"
+				"cor": cores.verde
 			},
 			"geometry": {
 				"type": "Polygon",
@@ -186,7 +194,7 @@ const perimetrosBairros = {
 			"type": "Feature",
 			"properties": {
 				"nome": "Vila São Luiz 1",
-				"cor": "#afafaf"
+				"cor": cores.amarelo
 			},
 			"geometry": {
 				"type": "Polygon",
@@ -211,6 +219,104 @@ const perimetrosBairros = {
 						-15.95187310999448],
 					[-48.25821597280245,
 						-15.950144631473563]
+				]]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"nome": "Montes Claros 2",
+				"cor": cores.roxo
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [[
+					[-48.25866157821514,
+						-15.95476784886884],
+					[-48.26109626572122,
+						-15.954024692062163],
+					[-48.26149176263627,
+						-15.956368674570072],
+					[-48.26193999950121,
+						-15.958079960946975],
+					[-48.258730053181466,
+						-15.960928927080346],
+					[-48.2553621835504,
+						-15.957432567243089],
+					[-48.257428192908975,
+						-15.955369523766706],
+					[-48.25866157821514,
+						-15.95476784886884]
+				]]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"nome": "Montes Claros 1",
+				"cor": cores.verde
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [[
+					[-48.26877005862494,
+						-15.957554115198192],
+					[-48.26206920933802,
+						-15.958211585733565],
+					[-48.26110640247478,
+						-15.954429263108409],
+					[-48.26469531288137,
+						-15.952738726014601],
+					[-48.26719063149605,
+						-15.953047221596307],
+					[-48.26925226465144,
+						-15.953436431691188],
+					[-48.269165837020836,
+						-15.955638324077796],
+					[-48.26877005862494,
+						-15.957554115198192]
+				]]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"nome": "Parque 11",
+				"cor": cores.amarelo
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [[
+					[-48.267128594135784,
+						-15.962765951889665],
+					[-48.26929812107372,
+						-15.955715947612987],
+					[-48.26902225605045,
+						-15.954316735381056],
+					[-48.269702661803535,
+						-15.95366608486674],
+					[-48.27161539519622,
+						-15.952698271642333],
+					[-48.27422136412534,
+						-15.952510719760838],
+					[-48.27585775000367,
+						-15.953156215226528],
+					[-48.27710417408633,
+						-15.95516666000016],
+					[-48.27915373067003,
+						-15.957669554428008],
+					[-48.28060059945258,
+						-15.95848004392424],
+					[-48.28230698925884,
+						-15.959809304137465],
+					[-48.280824241411636,
+						-15.96663750514412],
+					[-48.27743303538776,
+						-15.96589433454838],
+					[-48.27227490734671,
+						-15.964269647715724],
+					[-48.267128594135784,
+						-15.962765951889665]
 				]]
 			}
 		}]

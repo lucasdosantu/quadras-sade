@@ -41,12 +41,13 @@ Se você conhece alguma quadra que ainda não está cadastrada, clique no + e cl
 </div>
 </div>
 <div id="header">
-<button class="menu-hamburger" onclick="toggleMenu()">☰</button>
-<div class="search-container">
-<input type="text" id="mainSearch" class="search-box" placeholder="Busque Quadra ou CEP..." list="listaSugestoes">
-<span id="clearSearch" class="btn-clear">&times;</span>
-<datalist id="listaSugestoes"></datalist>
-</div>
+    <button class="menu-hamburger" onclick="toggleMenu()">☰</button>
+    <div class="search-container">
+        <input type="text" id="mainSearch" class="search-box" placeholder="Quadra X, Bairro Y ou CEP">
+        <span id="clearSearch" class="btn-clear">&times;</span>
+        
+        <ul id="listaSugestoesCustom" class="lista-custom"></ul>
+    </div>
 </div>
 <div id="menu-lateral">
 <div class="menu-header">
@@ -84,6 +85,12 @@ Se você conhece alguma quadra que ainda não está cadastrada, clique no + e cl
 </div>
 <div id="overlay-menu" onclick="toggleMenu()"></div>
 <div id="map">
+<div class="controls-right">
+<button class="btn-float btn-sat" onclick="event.stopPropagation(); toggleSatelite()">🛰️</button>
+<button class="btn-float btn-suggest" id="btnSuggest" onclick="event.stopPropagation(); toggleSuggestMode()">➕</button>
+<button class="btn-float" onclick="event.stopPropagation(); minhaLocalizacao()">📍</button>
+</div>
+</div>
 <div id="painel-rota">
 <div id="cabecalho-rota" onclick="alternarMinimizar()">
 <span>📍 Minha Rota (<span id="contador-rota">0</span>)</span><span id="icone-minimizar">▼</span>
@@ -93,12 +100,6 @@ Se você conhece alguma quadra que ainda não está cadastrada, clique no + e cl
 <div style="padding:10px;">
 <button id="rota-btn" onclick="gerarLinkGoogleMaps()">ABRIR NO GOOGLE MAPS</button>
 </div>
-</div>
-</div>
-<div class="controls-right">
-<button class="btn-float btn-sat" onclick="event.stopPropagation(); toggleSatelite()">🛰️</button>
-<button class="btn-float btn-suggest" id="btnSuggest" onclick="event.stopPropagation(); toggleSuggestMode()">➕</button>
-<button class="btn-float" onclick="event.stopPropagation(); minhaLocalizacao()">📍</button>
 </div>
 </div>
 <div id="footer">

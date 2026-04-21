@@ -1,1 +1,1 @@
-const VERSAO_SISTEMA = "1.1.5";
+const VERSAO_SISTEMA = "1.2.0";
