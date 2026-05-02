@@ -1,23 +1,9 @@
 let rotaMinimizada = false;
 let pontosDaRota = [];
-let localizacaoUsuario = null;
 let modoNoturnoAtivo = false;
 let camadaNoturna = null;
 let camadaBairros = null;
 let bairrosAtivos = false;
-
-function monitorarLocalizacao() {
-	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(pos => {
-			localizacaoUsuario = {
-				lat: pos.coords.latitude, lng: pos.coords.longitude, quadra: "Minha Localização"
-			};
-		}, err => {
-			console.error("Erro GPS:", err);
-		});
-	}
-}
-monitorarLocalizacao();
 
 function alternarMinimizar() {
 	const conteudo = document.getElementById('conteudo-rota');
@@ -62,13 +48,13 @@ function atualizarInterfaceRota() {
 }
 
 function gerarLinkGoogleMaps() {
-	if (!localizacaoUsuario) {
+	if (!coordsUsuario) {
 		alert("Aguardando seu GPS para iniciar a rota...");
 		return;
 	}
 
 	let restantes = [...pontosDaRota];
-	let pontoAtual = localizacaoUsuario;
+	let pontoAtual = coordsUsuario;
 	let paradasOtimizadas = [];
 
 	while (restantes.length > 0) {
@@ -86,7 +72,7 @@ function gerarLinkGoogleMaps() {
 		paradasOtimizadas.push(pontoAtual);
 	}
 
-	const origem = `${localizacaoUsuario.lat},${localizacaoUsuario.lng}`;
+	const origem = `${coordsUsuario.lat},${coordsUsuario.lng}`;
 	const destinoFinal = `${paradasOtimizadas[paradasOtimizadas.length - 1].lat},${paradasOtimizadas[paradasOtimizadas.length - 1].lng}`;
 	const paradas = paradasOtimizadas.slice(0, -1).map(p => `${p.lat},${p.lng}`).join('|');
 

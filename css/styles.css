@@ -8,9 +8,9 @@ body {
 	flex-direction: column;
 	height: 100dvh;
 	overflow: hidden;
-	background: #ecf0f1;
+	background: #f0f2f5;
+	color: #2c3e50;
 }
-
 #header {
 	display: flex;
 	align-items: center;
@@ -21,7 +21,6 @@ body {
 	z-index: 20000 !important;
 	box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
-
 .menu-item-toggle {
 	display: flex;
 	justify-content: space-between;
@@ -31,20 +30,15 @@ body {
 	cursor: pointer;
 	transition: background 0.2s;
 }
-
 .menu-item-toggle:hover {
 	background-color: rgba(0, 0, 0, 0.05);
 }
-
 body.dark-mode .menu-item-toggle:hover {
 	background-color: rgba(255, 255, 255, 0.1);
 }
-
 .menu-item-toggle .switch {
 	pointer-events: none;
 }
-
-
 .menu-hamburger {
 	background: none;
 	border: none;
@@ -57,14 +51,12 @@ body.dark-mode .menu-item-toggle:hover {
 	justify-content: center;
 	flex-shrink: 0;
 }
-
 .search-container {
 	flex: 1;
 	position: relative;
 	display: flex;
 	align-items: center;
 }
-
 .search-box {
 	width: 100%;
 	height: 40px;
@@ -75,8 +67,8 @@ body.dark-mode .menu-item-toggle:hover {
 	outline: none;
 	box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 	background: white;
+	color: #333;
 }
-
 .lista-custom {
 	position: absolute;
 	top: 100%;
@@ -97,7 +89,6 @@ body.dark-mode .menu-item-toggle:hover {
 	display: none;
 	box-shadow: 0 8px 15px rgba(0,0,0,0.2);
 }
-
 .lista-custom li {
 	padding: 14px 15px;
 	cursor: pointer;
@@ -107,30 +98,24 @@ body.dark-mode .menu-item-toggle:hover {
 	font-size: 14px;
 	text-align: left;
 }
-
 .lista-custom li:last-child {
 	border-bottom: none;
 }
-
 .lista-custom li:hover {
 	background-color: #f5f5f5;
 }
-
 body.dark-mode .lista-custom {
-	background: #2c2c2c;
-	border-color: #444;
+	background: #1e1e1e;
+	border-color: #333;
 	color: white;
 }
-
 body.dark-mode .lista-custom li {
 	color: #eee;
-	border-bottom-color: #444;
+	border-bottom-color: #333;
 }
-
 body.dark-mode .lista-custom li:hover {
-	background-color: #3d3d3d;
+	background-color: #333;
 }
-
 .btn-clear {
 	position: absolute;
 	right: 5px;
@@ -143,7 +128,6 @@ body.dark-mode .lista-custom li:hover {
 	align-items: center;
 	justify-content: center;
 }
-
 #menu-lateral {
 	position: fixed;
 	top: 0;
@@ -161,7 +145,6 @@ body.dark-mode .lista-custom li:hover {
 #menu-lateral.active {
 	transform: translateX(0);
 }
-
 #overlay-menu {
 	display: none;
 	position: fixed;
@@ -175,7 +158,6 @@ body.dark-mode .lista-custom li:hover {
 #overlay-menu.active {
 	display: block;
 }
-
 .menu-header {
 	background: #040853;
 	color: white;
@@ -184,7 +166,6 @@ body.dark-mode .lista-custom li:hover {
 	justify-content: space-between;
 	align-items: center;
 }
-
 .btn-close-menu {
 	background: none;
 	border: none;
@@ -192,7 +173,6 @@ body.dark-mode .lista-custom li:hover {
 	font-size: 30px;
 	cursor: pointer;
 }
-
 .menu-content {
 	flex-grow: 1;
 	overflow-y: auto;
@@ -209,6 +189,7 @@ body.dark-mode .lista-custom li:hover {
 	display: flex;
 	align-items: center;
 	gap: 10px;
+	color: #333;
 }
 .menu-content button:active {
 	background: #eef2ff;
@@ -218,7 +199,6 @@ body.dark-mode .lista-custom li:hover {
 	border-top: 1px solid #eee;
 	margin: 5px 0;
 }
-
 .menu-footer {
 	padding: 15px;
 	background: #f9f9f9;
@@ -227,7 +207,6 @@ body.dark-mode .lista-custom li:hover {
 	text-align: center;
 	border-top: 1px solid #eee;
 }
-
 #map {
 	flex-grow: 1;
 	width: 100%;
@@ -235,7 +214,6 @@ body.dark-mode .lista-custom li:hover {
 	background: #262626;
 	z-index: 1;
 }
-
 .controls-right {
 	position: absolute;
 	bottom: 30px;
@@ -245,7 +223,6 @@ body.dark-mode .lista-custom li:hover {
 	flex-direction: column;
 	gap: 12px;
 }
-
 .btn-float {
 	background: white;
 	width: 55px;
@@ -259,6 +236,7 @@ body.dark-mode .lista-custom li:hover {
 	cursor: pointer;
 	font-size: 22px;
 	transition: 0.3s;
+	color: #040853;
 }
 .btn-float:active {
 	transform: scale(0.9);
@@ -271,27 +249,16 @@ body.dark-mode .lista-custom li:hover {
 	background: #f39c12;
 	color: white;
 }
-
 .active-mode {
 	background: #e74c3c !important;
 	animation: pulse 1s infinite;
 	border: 2px solid white;
 }
-
 @keyframes pulse {
-	0% {
-		transform: scale(1);
-	}
-
-	50% {
-		transform: scale(1.1);
-	}
-
-	100% {
-		transform: scale(1);
-	}
+	0% { transform: scale(1); }
+	50% { transform: scale(1.1); }
+	100% { transform: scale(1); }
 }
-
 #footer {
 	background: #2c3e50;
 	color: #bdc3c7;
@@ -299,13 +266,11 @@ body.dark-mode .lista-custom li:hover {
 	text-align: center;
 	padding: 8px;
 }
-
 .popup-card {
 	text-align: center;
 	min-width: 180px;
 	padding: 5px;
 }
-
 .btn-gps {
 	background: #27ae60;
 	color: white;
@@ -318,7 +283,6 @@ body.dark-mode .lista-custom li:hover {
 	margin-top: 10px;
 	font-size: 14px;
 }
-
 .distancia-label {
 	color: #e67e22;
 	font-weight: bold;
@@ -326,7 +290,6 @@ body.dark-mode .lista-custom li:hover {
 	margin-top: 5px;
 	display: block;
 }
-
 .modal-overlay {
 	position: fixed;
 	top: 0;
@@ -340,7 +303,6 @@ body.dark-mode .lista-custom li:hover {
 	z-index: 999999;
 	overflow: hidden;
 }
-
 .modal-content {
 	background: white;
 	padding: 0;
@@ -352,25 +314,15 @@ body.dark-mode .lista-custom li:hover {
 	overflow: hidden;
 	animation: surgindo 0.3s ease-out;
 }
-
 @keyframes surgindo {
-	from {
-		transform: scale(0.8);
-		opacity: 0;
-	}
-
-	to {
-		transform: scale(1);
-		opacity: 1;
-	}
+	from { transform: scale(0.8); opacity: 0; }
+	to { transform: scale(1); opacity: 1; }
 }
-
 .modal-header {
 	background: #27ae60;
 	color: white;
 	padding: 20px;
 }
-
 .modal-body {
 	padding: 20px;
 	color: #333;
@@ -378,7 +330,6 @@ body.dark-mode .lista-custom li:hover {
 	max-height: 60vh;
 	overflow-y: auto;
 }
-
 .btn-fechar-modal {
 	background: #27ae60;
 	color: white;
@@ -393,31 +344,29 @@ body.dark-mode .lista-custom li:hover {
 .btn-fechar-modal:hover {
 	background: #219150;
 }
-
 .leaflet-control-zoom-in, .leaflet-control-zoom-out {
 	width: 45px !important;
 	height: 45px !important;
 	line-height: 45px !important;
 	font-size: 22px !important;
 	color: #040853 !important;
+	background-color: white !important;
 }
-
 .leaflet-bar {
 	border: 2px solid rgba(0,0,0,0.2) !important;
 	box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
 }
-
 .leaflet-right .leaflet-control-zoom {
 	margin-right: 20px;
 	margin-bottom: 20px;
 }
-
 body.dark-mode {
 	background: #121212;
 	color: #e0e0e0;
 }
 body.dark-mode #header, body.dark-mode .menu-header {
-	background: #02042a;
+	background: #000000;
+	border-bottom: 1px solid #222;
 }
 body.dark-mode #menu-lateral {
 	background: #1e1e1e;
@@ -437,14 +386,17 @@ body.dark-mode .menu-footer {
 body.dark-mode .search-box {
 	background: #2c2c2c;
 	color: white;
+	border: 1px solid #444;
 }
 body.dark-mode .btn-float {
 	background: #2c2c2c;
 	color: white;
+	border: 1px solid #444;
 }
 body.dark-mode .leaflet-popup-content-wrapper, body.dark-mode .leaflet-popup-tip {
-	background: #2c2c2c !important;
+	background: #252525 !important;
 	color: #ffffff !important;
+	border: 1px solid #444;
 }
 body.dark-mode .leaflet-popup-content {
 	color: #ffffff !important;
@@ -544,7 +496,6 @@ body.dark-mode .modal-overlay {
 	font-weight: bold;
 	cursor: pointer;
 }
-
 .menu-item-toggle {
 	display: flex;
 	justify-content: space-between;
@@ -553,20 +504,17 @@ body.dark-mode .modal-overlay {
 	font-size: 14px;
 	font-weight: 500;
 }
-
 .switch {
 	position: relative;
 	display: inline-block;
 	width: 40px;
 	height: 20px;
 }
-
 .switch input {
 	opacity: 0;
 	width: 0;
 	height: 0;
 }
-
 .slider {
 	position: absolute;
 	cursor: pointer;
@@ -578,7 +526,6 @@ body.dark-mode .modal-overlay {
 	transition: .4s;
 	border-radius: 20px;
 }
-
 .slider:before {
 	position: absolute;
 	content: "";
@@ -590,10 +537,46 @@ body.dark-mode .modal-overlay {
 	transition: .4s;
 	border-radius: 50%;
 }
-
 input:checked + .slider {
 	background-color: #34A853;
 }
 input:checked + .slider:before {
 	transform: translateX(20px);
+}
+.marcador-usuario-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	width: 30px;
+	height: 30px;
+}
+.bolinha-usuario {
+	width: 14px;
+	height: 14px;
+	background-color: #3498db;
+	border: 2px solid white;
+	border-radius: 50%;
+	box-shadow: 0 0 5px rgba(0,0,0,0.3);
+	z-index: 2;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.direcao-seta {
+	width: 0;
+	height: 0;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 9px solid rgba(52, 152, 219, 0.8);
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -5px;
+	margin-top: -18px;
+	z-index: 1;
+	transform-origin: 5px 18px;
+	transform: rotate(180deg);
+	transition: transform 0.1s linear;
 }
