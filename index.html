@@ -116,6 +116,8 @@ Se você conhece alguma quadra que ainda não está cadastrada, clique no + e cl
 </div>
 <div id="footer">
 &copy; <span id="anoAtual"></span> SADE - Localizador de Quadras | <span id="totalQuadras">0</span> mapeadas.
+<div class="visitas-box">👁️ <span id="contador-visitas">...</span></div>
+</div>
 </div>
 <script src="js/versao.js"></script>
 <script src="js/quadras-db.js"></script>
@@ -151,5 +153,36 @@ if ('serviceWorker' in navigator) {
 navigator.serviceWorker.register('sw.js').then(() => console.log("SADE: Offline pronto.")).catch(err => console.error("SADE: Erro no SW", err));
 }
 </script>
+	    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const elContador = document.getElementById("contador-visitas");
+        const jaVisitouNaSessao = sessionStorage.getItem("sade_visited");
+
+        const isFirstVisit = !jaVisitouNaSessao;
+        const url = isFirstVisit
+          ? "https://api.counterapi.dev/v2/quadras-sade-github-endpoint/quadras-sade-index/up"
+          : "https://api.counterapi.dev/v2/quadras-sade-github-endpoint/quadras-sade-index";
+
+        fetch(url)
+          .then((response) => {
+            if (!response.ok)
+              throw new Error("Falha ao comunicar com a CounterAPI");
+            return response.json();
+          })
+          .then((res) => {
+            if (res && res.data && typeof res.data.up !== "undefined") {
+              elContador.textContent = res.data.up.toLocaleString("pt-BR");
+
+              if (isFirstVisit) {
+                sessionStorage.setItem("sade_visited", "true");
+              }
+            }
+          })
+          .catch((err) => {
+            console.error("Erro no contador:", err);
+            elContador.textContent = "—";
+          });
+      });
+		</script>
 </body>
 </html>
