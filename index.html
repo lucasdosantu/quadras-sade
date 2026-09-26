@@ -93,6 +93,7 @@ Se você conhece alguma quadra que ainda não está cadastrada, clique no + e cl
 
 <div class="menu-footer">
 <p id="versao-exibida"></p>
+<img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Flucasdosantu.github.io%2Fquadras-sade%2F&label=Visitas&icon=pin-map&color=%23198754&message=&style=for-the-badge&tz=UTC">
 </div>
 </div>
 <div id="overlay-menu" onclick="toggleMenu()"></div>
@@ -116,7 +117,6 @@ Se você conhece alguma quadra que ainda não está cadastrada, clique no + e cl
 </div>
 <div id="footer">
 &copy; <span id="anoAtual"></span> SADE - Localizador de Quadras | <span id="totalQuadras">0</span> mapeadas.
-<div class="visitas-box">👁️ <span id="contador-visitas">...</span></div>
 </div>
 </div>
 <script src="js/versao.js"></script>
@@ -152,44 +152,5 @@ document.getElementById('totalQuadras').innerText = baseDeDados.length;
 if ('serviceWorker' in navigator) {
 navigator.serviceWorker.register('sw.js').then(() => console.log("SADE: Offline pronto.")).catch(err => console.error("SADE: Erro no SW", err));
 }
-</script>
-	    <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const elContador = document.getElementById('contador-visitas');
-    const jaVisitouNaSessao = sessionStorage.getItem('sade_visited');
-
-    const isFirstVisit = !jaVisitouNaSessao;
-    const url = isFirstVisit 
-      ? 'https://api.counterapi.dev/v2/quadras-sade-github-endpoint/quadras-sade-index/up'
-      : 'https://api.counterapi.dev/v2/quadras-sade-github-endpoint/quadras-sade-index';
-
-    fetch(url)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`Erro na API (${response.status})`);
-        }
-        return response.json();
-      })
-      .then(res => {
-        const totalVisitas = res.data?.value ?? res.data?.up ?? res.data?.count;
-
-        if (totalVisitas !== undefined && totalVisitas !== null) {
-          elContador.textContent = Number(totalVisitas).toLocaleString('pt-BR');
-          
-          if (isFirstVisit) {
-            sessionStorage.setItem('sade_visited', 'true');
-          }
-        } else {
-          console.warn('Estrutura de resposta inesperada:', res);
-          elContador.textContent = '—';
-        }
-      })
-      .catch(err => {
-        console.error('Erro ao buscar contador:', err);
-        elContador.textContent = '—';
-      });
-  });
-</script>
-
 </body>
 </html>
